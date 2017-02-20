@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Add Book</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form ng-submit="main.addBook()">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" ng-model="main.book.title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label>Gener</label>
+                        <select ng-model="main.book.gener" class="form-control">
+                            <option value="">Select General</option>
+                            <option value="Suspense">Suspense</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="NonFiction">NonFiction</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" ng-model="main.book.description" class="form-control" placeholder="Book Description" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Authour</label>
+                        <input type="text" class="form-control" name="authour" ng-model="main.book.authour" placeholder="Authour">
+                    </div>
+                    <div class="form-group">
+                        <label>Publisher</label>
+                        <input type="text" class="form-control" name="publisher" ng-model="main.book.publisher" placeholder="Publisher">
+                    </div>
+                    <div class="form-group">
+                        <label>Pages</label>
+                        <input type="text" class="form-control" name="pages" ng-model="main.book.pages" placeholder="Pages">
+                    </div>
+                    <div class="form-group">
+                        <label>Images Url</label>
+                        <input type="text" class="form-control" name="images_url" ng-model="main.book.images_url" placeholder="Image Url">
+                    </div>
+                    <div class="form-group">
+                        <label>Buy Url</label>
+                        <input type="text" class="form-control" name="buy_url" ng-model="main.book.buy_url" placeholder="Buy Url">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="#!/books" class="btn btn-warning">Back to Book List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
