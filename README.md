@@ -2,9 +2,9 @@
 This is a sample MEAN demo app with full CRUD functionality.
 
 # Mongo
-Download and Install [https://www.mongodb.com/](Mongodb) in local system if not available and following the belwo steps.
+Download and Install [https://www.mongodb.com/](Mongodb) in local system if not available and following the below steps.
 
-1. Create db named `bookstore` and collection name `books` & `geners`.<br>
+1. Create db named `bookstore` and collections name `books` & `geners`.<br>
 2. Run the `mongod`. It will `waiting for connections on port 27017`.
 
 As soon as application will run mongodb will connect with node backend services.
