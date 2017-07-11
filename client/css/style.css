@@ -1,8 +1,12 @@
-img{
+img {
     width: 100%;
 }
 
 textarea.form-control {
     resize: none;
     height: 100px;
+}
+
+.book-block {
+    min-height: 800px;
 }
