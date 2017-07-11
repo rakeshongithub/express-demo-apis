@@ -1,11 +1,11 @@
 var myApp = angular.module('myApp');
 
-function BooksController($scope, $location, $routeParams, BooksService) {
+function BooksController($scope, $location, $log, $routeParams, BooksService) {
     var vm = this;
     BooksService.getBooks().then(function (data) {
         vm.books = data;
     }, function (err) {
-        console.log('SOMETHING GOES WRONG', err)
+        $log.log('SOMETHING GOES WRONG', err)
     });
 
     if ($routeParams.id) {
@@ -33,5 +33,5 @@ function BooksController($scope, $location, $routeParams, BooksService) {
     }
 
 }
-BooksController.$inject = ['$scope', '$location', '$routeParams', 'BooksService'];
+BooksController.$inject = ['$scope', '$location', '$log', '$routeParams', 'BooksService'];
 myApp.controller('BooksController', BooksController);
