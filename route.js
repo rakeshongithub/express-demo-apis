@@ -3,7 +3,7 @@ var router = express.Router({
     caseSensitive: true
 });
 
-var booksController = require('./server/controllers/booksController');
+var booksController = require('./app/server/controllers/booksController');
 
 var routes = {
     'GET /api/books': booksController.getBooks,

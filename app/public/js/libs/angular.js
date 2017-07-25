@@ -3,9 +3,10 @@
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window) {'use strict';
+(function(window) {
+    'use strict';
 
-/**
+    /**
  * @description
  *
  * This object provides a utility for producing rich Error messages within
@@ -209,7 +210,9 @@
  * @param {string} string String to be converted to lowercase.
  * @returns {string} Lowercased string.
  */
-    var lowercase = function(string) {return isString(string) ? string.toLowerCase() : string;};
+    var lowercase = function(string) {
+        return isString(string) ? string.toLowerCase() : string;
+    };
 
     /**
  * @ngdoc function
@@ -226,20 +229,26 @@
  * @param {string} string String to be converted to uppercase.
  * @returns {string} Uppercased string.
  */
-    var uppercase = function(string) {return isString(string) ? string.toUpperCase() : string;};
+    var uppercase = function(string) {
+        return isString(string) ? string.toUpperCase() : string;
+    };
 
 
     var manualLowercase = function(s) {
         /* eslint-disable no-bitwise */
         return isString(s)
-            ? s.replace(/[A-Z]/g, function(ch) {return String.fromCharCode(ch.charCodeAt(0) | 32);})
+            ? s.replace(/[A-Z]/g, function(ch) {
+                return String.fromCharCode(ch.charCodeAt(0) | 32);
+            })
             : s;
         /* eslint-enable */
     };
     var manualUppercase = function(s) {
         /* eslint-disable no-bitwise */
         return isString(s)
-            ? s.replace(/[a-z]/g, function(ch) {return String.fromCharCode(ch.charCodeAt(0) & ~32);})
+            ? s.replace(/[a-z]/g, function(ch) {
+                return String.fromCharCode(ch.charCodeAt(0) & ~32);
+            })
             : s;
         /* eslint-enable */
     };
@@ -350,28 +359,33 @@
                         iterator.call(context, obj[key], key, obj);
                     }
                 }
-            } else if (isArray(obj) || isArrayLike(obj)) {
+            }
+            else if (isArray(obj) || isArrayLike(obj)) {
                 var isPrimitive = typeof obj !== 'object';
                 for (key = 0, length = obj.length; key < length; key++) {
                     if (isPrimitive || key in obj) {
                         iterator.call(context, obj[key], key, obj);
                     }
                 }
-            } else if (obj.forEach && obj.forEach !== forEach) {
+            }
+            else if (obj.forEach && obj.forEach !== forEach) {
                 obj.forEach(iterator, context, obj);
-            } else if (isBlankObject(obj)) {
+            }
+            else if (isBlankObject(obj)) {
                 // createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty
                 for (key in obj) {
                     iterator.call(context, obj[key], key, obj);
                 }
-            } else if (typeof obj.hasOwnProperty === 'function') {
+            }
+            else if (typeof obj.hasOwnProperty === 'function') {
                 // Slow path for objects inheriting Object.prototype, hasOwnProperty check needed
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) {
                         iterator.call(context, obj[key], key, obj);
                     }
                 }
-            } else {
+            }
+            else {
                 // Slow path for objects which do not have a method `hasOwnProperty`
                 for (key in obj) {
                     if (hasOwnProperty.call(obj, key)) {
@@ -398,7 +412,9 @@
  * @returns {function(*, string)}
  */
     function reverseParams(iteratorFn) {
-        return function(value, key) {iteratorFn(key, value);};
+        return function(value, key) {
+            iteratorFn(key, value);
+        };
     }
 
     /**
@@ -424,7 +440,8 @@
     function setHashKey(obj, h) {
         if (h) {
             obj.$$hashKey = h;
-        } else {
+        }
+        else {
             delete obj.$$hashKey;
         }
     }
@@ -444,17 +461,22 @@
                 if (deep && isObject(src)) {
                     if (isDate(src)) {
                         dst[key] = new Date(src.valueOf());
-                    } else if (isRegExp(src)) {
+                    }
+                    else if (isRegExp(src)) {
                         dst[key] = new RegExp(src);
-                    } else if (src.nodeName) {
+                    }
+                    else if (src.nodeName) {
                         dst[key] = src.cloneNode(true);
-                    } else if (isElement(src)) {
+                    }
+                    else if (isElement(src)) {
                         dst[key] = src.clone();
-                    } else {
+                    }
+                    else {
                         if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
                         baseExtend(dst[key], [src], true);
                     }
-                } else {
+                }
+                else {
                     dst[key] = src;
                 }
             }
@@ -573,11 +595,17 @@
  * @param {*} value to be returned.
  * @returns {*} the value passed in.
  */
-    function identity($) {return $;}
+    function identity($) {
+        return $;
+    }
     identity.$inject = [];
 
 
-    function valueFn(value) {return function valueRef() {return value;};}
+    function valueFn(value) {
+        return function valueRef() {
+            return value;
+        };
+    }
 
     function hasCustomToString(obj) {
         return isFunction(obj.toString) && obj.toString !== toString;
@@ -596,7 +624,9 @@
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is undefined.
  */
-    function isUndefined(value) {return typeof value === 'undefined';}
+    function isUndefined(value) {
+        return typeof value === 'undefined';
+    }
 
 
     /**
@@ -611,7 +641,9 @@
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is defined.
  */
-    function isDefined(value) {return typeof value !== 'undefined';}
+    function isDefined(value) {
+        return typeof value !== 'undefined';
+    }
 
 
     /**
@@ -655,7 +687,9 @@
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `String`.
  */
-    function isString(value) {return typeof value === 'string';}
+    function isString(value) {
+        return typeof value === 'string';
+    }
 
 
     /**
@@ -676,7 +710,9 @@
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `Number`.
  */
-    function isNumber(value) {return typeof value === 'number';}
+    function isNumber(value) {
+        return typeof value === 'number';
+    }
 
 
     /**
@@ -722,7 +758,9 @@
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `Function`.
  */
-    function isFunction(value) {return typeof value === 'function';}
+    function isFunction(value) {
+        return typeof value === 'function';
+    }
 
 
     /**
@@ -931,7 +969,8 @@
             // Empty the destination object
             if (isArray(destination)) {
                 destination.length = 0;
-            } else {
+            }
+            else {
                 forEach(destination, function(value, key) {
                     if (key !== '$$hashKey') {
                         delete destination[key];
@@ -953,19 +992,22 @@
                 for (var i = 0, ii = source.length; i < ii; i++) {
                     destination.push(copyElement(source[i]));
                 }
-            } else if (isBlankObject(source)) {
+            }
+            else if (isBlankObject(source)) {
                 // createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty
                 for (key in source) {
                     destination[key] = copyElement(source[key]);
                 }
-            } else if (source && typeof source.hasOwnProperty === 'function') {
+            }
+            else if (source && typeof source.hasOwnProperty === 'function') {
                 // Slow path, which must rely on hasOwnProperty
                 for (key in source) {
                     if (source.hasOwnProperty(key)) {
                         destination[key] = copyElement(source[key]);
                     }
                 }
-            } else {
+            }
+            else {
                 // Slowest path --- hasOwnProperty can't be called as a method
                 for (key in source) {
                     if (hasOwnProperty.call(source, key)) {
@@ -1135,13 +1177,16 @@
                     }
                     return true;
                 }
-            } else if (isDate(o1)) {
+            }
+            else if (isDate(o1)) {
                 if (!isDate(o2)) return false;
                 return equals(o1.getTime(), o2.getTime());
-            } else if (isRegExp(o1)) {
+            }
+            else if (isRegExp(o1)) {
                 if (!isRegExp(o2)) return false;
                 return o1.toString() === o2.toString();
-            } else {
+            }
+            else {
                 if (isScope(o1) || isScope(o2) || isWindow(o1) || isWindow(o2) ||
         isArray(o2) || isDate(o2) || isRegExp(o2)) return false;
                 keySet = createMap();
@@ -1176,7 +1221,8 @@
                     noUnsafeEval: !ngCspAttribute || (ngCspAttribute.indexOf('no-unsafe-eval') !== -1),
                     noInlineStyle: !ngCspAttribute || (ngCspAttribute.indexOf('no-inline-style') !== -1)
                 };
-            } else {
+            }
+            else {
                 csp.rules = {
                     noUnsafeEval: noUnsafeEval(),
                     noInlineStyle: false
@@ -1191,7 +1237,8 @@
                 // eslint-disable-next-line no-new, no-new-func
                 new Function('');
                 return false;
-            } catch (e) {
+            }
+            catch (e) {
                 return true;
             }
         }
@@ -1291,7 +1338,8 @@
                         ? fn.apply(self, arguments)
                         : fn.call(self);
                 };
-        } else {
+        }
+        else {
             // In IE, native methods are not functions so they cannot be bound (note: they don't need to be).
             return fn;
         }
@@ -1303,11 +1351,14 @@
 
         if (typeof key === 'string' && key.charAt(0) === '$' && key.charAt(1) === '$') {
             val = undefined;
-        } else if (isWindow(value)) {
+        }
+        else if (isWindow(value)) {
             val = '$WINDOW';
-        } else if (value &&  window.document === value) {
+        }
+        else if (value &&  window.document === value) {
             val = '$DOCUMENT';
-        } else if (isScope(value)) {
+        }
+        else if (isScope(value)) {
             val = '$SCOPE';
         }
 
@@ -1413,14 +1464,18 @@
             // turns out IE does not let you set .html() on elements which
             // are not allowed to have children. So we just ignore it.
             element.empty();
-        } catch (e) { /* empty */ }
+        }
+        catch (e) { /* empty */ }
         var elemHtml = jqLite('<div>').append(element).html();
         try {
             return element[0].nodeType === NODE_TYPE_TEXT ? lowercase(elemHtml) :
                 elemHtml.
                     match(/^(<[^>]+>)/)[1].
-                    replace(/^<([\w-]+)/, function(match, nodeName) {return '<' + lowercase(nodeName);});
-        } catch (e) {
+                    replace(/^<([\w-]+)/, function(match, nodeName) {
+                        return '<' + lowercase(nodeName);
+                    });
+        }
+        catch (e) {
             return lowercase(elemHtml);
         }
 
@@ -1440,7 +1495,8 @@
     function tryDecodeURIComponent(value) {
         try {
             return decodeURIComponent(value);
-        } catch (e) {
+        }
+        catch (e) {
             // Ignore any invalid uri component.
         }
     }
@@ -1466,9 +1522,11 @@
                     val = isDefined(val) ? tryDecodeURIComponent(val) : true;
                     if (!hasOwnProperty.call(obj, key)) {
                         obj[key] = val;
-                    } else if (isArray(obj[key])) {
+                    }
+                    else if (isArray(obj[key])) {
                         obj[key].push(val);
-                    } else {
+                    }
+                    else {
                         obj[key] = [obj[key],val];
                     }
                 }
@@ -1485,7 +1543,8 @@
                     parts.push(encodeUriQuery(key, true) +
                    (arrayValue === true ? '' : '=' + encodeUriQuery(arrayValue, true)));
                 });
-            } else {
+            }
+            else {
                 parts.push(encodeUriQuery(key, true) +
                (value === true ? '' : '=' + encodeUriQuery(value, true)));
             }
@@ -1958,7 +2017,8 @@
                 }
                 originalCleanData(elems);
             };
-        } else {
+        }
+        else {
             jqLite = JQLite;
         }
 
@@ -2078,7 +2138,8 @@
         default:
             if (hasCustomToString(value) && !isArray(value) && !isDate(value)) {
                 value = value.toString();
-            } else {
+            }
+            else {
                 value = toJson(value);
             }
         }
@@ -2470,7 +2531,8 @@
             for (var i = 0, ii = src.length; i < ii; i++) {
                 dst[i] = src[i];
             }
-        } else if (isObject(src)) {
+        }
+        else if (isObject(src)) {
             dst = dst || {};
 
             for (var key in src) {
@@ -2503,9 +2565,11 @@
     function toDebugString(obj) {
         if (typeof obj === 'function') {
             return obj.toString().replace(/ \{[\s\S]*$/, '');
-        } else if (isUndefined(obj)) {
+        }
+        else if (isUndefined(obj)) {
             return 'undefined';
-        } else if (typeof obj !== 'string') {
+        }
+        else if (typeof obj !== 'string') {
             return serializeObject(obj);
         }
         return obj;
@@ -2911,7 +2975,9 @@
         return this.cache[node[this.expando]] || {};
     };
 
-    function jqNextId() { return ++jqId; }
+    function jqNextId() {
+        return ++jqId; 
+    }
 
 
     var DASH_LOWERCASE_REGEXP = /-([a-z])/g;
@@ -2993,7 +3059,8 @@
         if (jqLiteIsTextNode(html)) {
             // Convert non-html into a text node
             nodes.push(context.createTextNode(html));
-        } else {
+        }
+        else {
             // Convert html into DOM nodes
             tmp = fragment.appendChild(context.createElement('div'));
             tag = (TAG_NAME_REGEXP.exec(html) || ['', ''])[1].toLowerCase();
@@ -3075,9 +3142,11 @@
 
         if (argIsString) {
             jqLiteAddNodes(this, jqLiteParseHTML(element));
-        } else if (isFunction(element)) {
+        }
+        else if (isFunction(element)) {
             jqLiteReady(element);
-        } else {
+        }
+        else {
             jqLiteAddNodes(this, element);
         }
     }
@@ -3113,7 +3182,8 @@
                 }
                 delete events[type];
             }
-        } else {
+        }
+        else {
 
             var removeHandler = function(type) {
                 var listenerFns = events[type];
@@ -3182,14 +3252,17 @@
 
             if (isSimpleSetter) { // data('key', value)
                 data[kebabToCamel(key)] = value;
-            } else {
+            }
+            else {
                 if (massGetter) {  // data()
                     return data;
-                } else {
+                }
+                else {
                     if (isSimpleGetter) { // data('key')
                         // don't force creation of expandoStore if it doesn't exist yet
                         return data && data[kebabToCamel(key)];
-                    } else { // mass-setter: data({key1: val1, key2: val2})
+                    }
+                    else { // mass-setter: data({key1: val1, key2: val2})
                         for (prop in key) {
                             data[kebabToCamel(prop)] = key[prop];
                         }
@@ -3242,7 +3315,8 @@
             // if a Node (the most common case)
             if (elements.nodeType) {
                 root[root.length++] = elements;
-            } else {
+            }
+            else {
                 var length = elements.length;
 
                 // if an Array or NodeList and not a Window
@@ -3252,7 +3326,8 @@
                             root[root.length++] = elements[i];
                         }
                     }
-                } else {
+                }
+                else {
                     root[root.length++] = elements;
                 }
             }
@@ -3305,7 +3380,8 @@
             // from the action's point of view
             // i.e. it will definitely not be in a $apply
             win.setTimeout(action);
-        } else {
+        }
+        else {
             // No need to unbind this handler as load is only ever called once
             jqLite(win).on('load', action);
         }
@@ -3321,7 +3397,8 @@
         // check if document is already loaded
         if (window.document.readyState === 'complete') {
             window.setTimeout(fn);
-        } else {
+        }
+        else {
             // We can not use jqLite since we are not done loading and jQuery could be loaded later.
 
             // Works for modern browsers and IE9
@@ -3339,7 +3416,9 @@
         ready: jqLiteReady,
         toString: function() {
             var value = [];
-            forEach(this, function(e) { value.push('' + e);});
+            forEach(this, function(e) {
+                value.push('' + e);
+            });
             return '[' + value.join(', ') + ']';
         },
 
@@ -3427,7 +3506,8 @@
 
             if (isDefined(value)) {
                 element.style[name] = value;
-            } else {
+            }
+            else {
                 return element.style[name];
             }
         },
@@ -3448,10 +3528,12 @@
 
                 if (value === null || (value === false && isBooleanAttr)) {
                     element.removeAttribute(name);
-                } else {
+                }
+                else {
                     element.setAttribute(name, isBooleanAttr ? lowercasedName : value);
                 }
-            } else {
+            }
+            else {
                 // getter
 
                 ret = element.getAttribute(name);
@@ -3467,7 +3549,8 @@
         prop: function(element, name, value) {
             if (isDefined(value)) {
                 element[name] = value;
-            } else {
+            }
+            else {
                 return element[name];
             }
         },
@@ -3530,7 +3613,8 @@
                         if (fn === jqLiteData) {
                             // data() takes the whole object in jQuery
                             fn(this[i], arg1);
-                        } else {
+                        }
+                        else {
                             for (key in arg1) {
                                 fn(this[i], key, arg1[key]);
                             }
@@ -3538,7 +3622,8 @@
                     }
                     // return self for chaining
                     return this;
-                } else {
+                }
+                else {
                     // we are a read, so read the first child.
                     // TODO: do we still need this?
                     var value = fn.$dv;
@@ -3550,7 +3635,8 @@
                     }
                     return value;
                 }
-            } else {
+            }
+            else {
                 // we are a write, so apply to all children
                 for (i = 0; i < nodeCount; i++) {
                     fn(this[i], arg1, arg2);
@@ -3676,7 +3762,8 @@
                 if (MOUSE_EVENT_MAP[type]) {
                     addHandler(MOUSE_EVENT_MAP[type], specialMouseHandlerWrapper);
                     addHandler(type, undefined, true);
-                } else {
+                }
+                else {
                     addHandler(type);
                 }
             }
@@ -3703,7 +3790,8 @@
             forEach(new JQLite(replaceNode), function(node) {
                 if (index) {
                     parent.insertBefore(node, index.nextSibling);
-                } else {
+                }
+                else {
                     parent.replaceChild(node, element);
                 }
                 index = node;
@@ -3796,7 +3884,8 @@
         find: function(element, selector) {
             if (element.getElementsByTagName) {
                 return element.getElementsByTagName(selector);
-            } else {
+            }
+            else {
                 return [];
             }
         },
@@ -3814,10 +3903,18 @@
             if (eventFns) {
                 // Create a dummy event to pass to the handlers
                 dummyEvent = {
-                    preventDefault: function() { this.defaultPrevented = true; },
-                    isDefaultPrevented: function() { return this.defaultPrevented === true; },
-                    stopImmediatePropagation: function() { this.immediatePropagationStopped = true; },
-                    isImmediatePropagationStopped: function() { return this.immediatePropagationStopped === true; },
+                    preventDefault: function() {
+                        this.defaultPrevented = true; 
+                    },
+                    isDefaultPrevented: function() {
+                        return this.defaultPrevented === true; 
+                    },
+                    stopImmediatePropagation: function() {
+                        this.immediatePropagationStopped = true; 
+                    },
+                    isImmediatePropagationStopped: function() {
+                        return this.immediatePropagationStopped === true; 
+                    },
                     stopPropagation: noop,
                     type: eventName,
                     target: element
@@ -3853,7 +3950,8 @@
                         // any function which returns a value needs to be wrapped
                         value = jqLite(value);
                     }
-                } else {
+                }
+                else {
                     jqLiteAddNodes(value, fn(this[i], arg1, arg2, arg3));
                 }
             }
@@ -3912,7 +4010,8 @@
         var objType = typeof obj;
         if (objType === 'function' || (objType === 'object' && obj !== null)) {
             key = obj.$$hashKey = objType + ':' + (nextUidFn || nextUid)();
-        } else {
+        }
+        else {
             key = objType + ':' + obj;
         }
 
@@ -4101,11 +4200,13 @@
                 }
                 fn.$inject = $inject;
             }
-        } else if (isArray(fn)) {
+        }
+        else if (isArray(fn)) {
             last = fn.length - 1;
             assertArgFn(fn[last], 'fn');
             $inject = fn.slice(0, last);
-        } else {
+        }
+        else {
             assertArgFn(fn, 'fn', true);
         }
         return $inject;
@@ -4662,7 +4763,9 @@
         var runBlocks = loadModules(modulesToLoad);
         instanceInjector = protoInstanceInjector.get('$injector');
         instanceInjector.strictDi = strictDi;
-        forEach(runBlocks, function(fn) { if (fn) instanceInjector.invoke(fn); });
+        forEach(runBlocks, function(fn) {
+            if (fn) instanceInjector.invoke(fn); 
+        });
 
         return instanceInjector;
 
@@ -4674,7 +4777,8 @@
             return function(key, value) {
                 if (isObject(key)) {
                     forEach(key, reverseParams(delegate));
-                } else {
+                }
+                else {
                     return delegate(key, value);
                 }
             };
@@ -4713,7 +4817,9 @@
             }]);
         }
 
-        function value(name, val) { return factory(name, valueFn(val), false); }
+        function value(name, val) {
+            return factory(name, valueFn(val), false); 
+        }
 
         function constant(name, value) {
             assertNotHasOwnProperty(name, 'constant');
@@ -4757,14 +4863,18 @@
                         runBlocks = runBlocks.concat(loadModules(moduleFn.requires)).concat(moduleFn._runBlocks);
                         runInvokeQueue(moduleFn._invokeQueue);
                         runInvokeQueue(moduleFn._configBlocks);
-                    } else if (isFunction(module)) {
+                    }
+                    else if (isFunction(module)) {
                         runBlocks.push(providerInjector.invoke(module));
-                    } else if (isArray(module)) {
+                    }
+                    else if (isArray(module)) {
                         runBlocks.push(providerInjector.invoke(module));
-                    } else {
+                    }
+                    else {
                         assertArgFn(module, 'module');
                     }
-                } catch (e) {
+                }
+                catch (e) {
                     if (isArray(module)) {
                         module = module[module.length - 1];
                     }
@@ -4796,18 +4906,21 @@
                             serviceName + ' <- ' + path.join(' <- '));
                     }
                     return cache[serviceName];
-                } else {
+                }
+                else {
                     try {
                         path.unshift(serviceName);
                         cache[serviceName] = INSTANTIATING;
                         cache[serviceName] = factory(serviceName, caller);
                         return cache[serviceName];
-                    } catch (err) {
+                    }
+                    catch (err) {
                         if (cache[serviceName] === INSTANTIATING) {
                             delete cache[serviceName];
                         }
                         throw err;
-                    } finally {
+                    }
+                    finally {
                         path.shift();
                     }
                 }
@@ -4860,7 +4973,8 @@
                     // http://jsperf.com/angularjs-invoke-apply-vs-switch
                     // #5388
                     return fn.apply(self, args);
-                } else {
+                }
+                else {
                     args.unshift(null);
                     return new (Function.prototype.bind.apply(fn, args))();
                 }
@@ -5086,15 +5200,18 @@
 
                 if (isFunction(offset)) {
                     offset = offset();
-                } else if (isElement(offset)) {
+                }
+                else if (isElement(offset)) {
                     var elem = offset[0];
                     var style = $window.getComputedStyle(elem);
                     if (style.position !== 'fixed') {
                         offset = 0;
-                    } else {
+                    }
+                    else {
                         offset = elem.getBoundingClientRect().bottom;
                     }
-                } else if (!isNumber(offset)) {
+                }
+                else if (!isNumber(offset)) {
                     offset = 0;
                 }
 
@@ -5124,7 +5241,8 @@
                         var elemTop = elem.getBoundingClientRect().top;
                         $window.scrollBy(0, elemTop - offset);
                     }
-                } else {
+                }
+                else {
                     $window.scrollTo(0, 0);
                 }
             }
@@ -5150,15 +5268,17 @@
             // does not scroll when user clicks on anchor link that is currently on
             // (no url change, no $location.hash() change), browser native does scroll
             if (autoScrollingEnabled) {
-                $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
-                    function autoScrollWatchAction(newVal, oldVal) {
-                        // skip the initial scroll if $location.hash is empty
-                        if (newVal === oldVal && newVal === '') return;
+                $rootScope.$watch(function autoScrollWatch() {
+                    return $location.hash();
+                },
+                function autoScrollWatchAction(newVal, oldVal) {
+                    // skip the initial scroll if $location.hash is empty
+                    if (newVal === oldVal && newVal === '') return;
 
-                        jqLiteDocumentLoaded(function() {
-                            $rootScope.$evalAsync(scroll);
-                        });
+                    jqLiteDocumentLoaded(function() {
+                        $rootScope.$evalAsync(scroll);
                     });
+                });
             }
 
             return scroll;
@@ -5290,7 +5410,8 @@
                                 if (status !== hasClass) {
                                     if (status) {
                                         toAdd += (toAdd.length ? ' ' : '') + className;
-                                    } else {
+                                    }
+                                    else {
                                         toRemove += (toRemove.length ? ' ' : '') + className;
                                     }
                                 }
@@ -5436,7 +5557,8 @@
                 }
                 if (afterElement) {
                     afterElement.after(element);
-                } else {
+                }
+                else {
                     parentElement.prepend(element);
                 }
             }
@@ -5843,7 +5965,8 @@
                 return function(callback) {
                     if (passed) {
                         callback();
-                    } else {
+                    }
+                    else {
                         waitForTick(callback);
                     }
                 };
@@ -5907,7 +6030,8 @@
                     this._tick = function(fn) {
                         if ($$isDocumentHidden()) {
                             timeoutTick(fn);
-                        } else {
+                        }
+                        else {
                             rafTick(fn);
                         }
                     };
@@ -5922,7 +6046,8 @@
                     done: function(fn) {
                         if (this._state === DONE_COMPLETE_STATE) {
                             fn();
-                        } else {
+                        }
+                        else {
                             this._doneCallbacks.push(fn);
                         }
                     },
@@ -5936,7 +6061,8 @@
                                 self.done(function(status) {
                                     if (status === false) {
                                         reject();
-                                    } else {
+                                    }
+                                    else {
                                         resolve();
                                     }
                                 });
@@ -6120,7 +6246,9 @@
 
         // TODO(vojta): remove this temporary api
         self.$$completeOutstandingRequest = completeOutstandingRequest;
-        self.$$incOutstandingRequestCount = function() { outstandingRequestCount++; };
+        self.$$incOutstandingRequestCount = function() {
+            outstandingRequestCount++; 
+        };
 
         /**
    * Executes the `fn` function(supports currying) and decrements the `outstandingRequestCallbacks`
@@ -6129,13 +6257,15 @@
         function completeOutstandingRequest(fn) {
             try {
                 fn.apply(null, sliceArgs(arguments, 1));
-            } finally {
+            }
+            finally {
                 outstandingRequestCount--;
                 if (outstandingRequestCount === 0) {
                     while (outstandingRequestCallbacks.length) {
                         try {
                             outstandingRequestCallbacks.pop()();
-                        } catch (e) {
+                        }
+                        catch (e) {
                             $log.error(e);
                         }
                     }
@@ -6157,7 +6287,8 @@
         self.notifyWhenNoOutstandingRequests = function(callback) {
             if (outstandingRequestCount === 0) {
                 callback();
-            } else {
+            }
+            else {
                 outstandingRequestCallbacks.push(callback);
             }
         };
@@ -6173,7 +6304,8 @@
             getCurrentState = !$sniffer.history ? noop : function getCurrentState() {
                 try {
                     return history.state;
-                } catch (e) {
+                }
+                catch (e) {
                     // MSIE can reportedly throw when there is no state (UNCONFIRMED).
                 }
             };
@@ -6232,15 +6364,18 @@
                 if ($sniffer.history && (!sameBase || !sameState)) {
                     history[replace ? 'replaceState' : 'pushState'](state, '', url);
                     cacheState();
-                } else {
+                }
+                else {
                     if (!sameBase) {
                         pendingLocation = url;
                     }
                     if (replace) {
                         location.replace(url);
-                    } else if (!sameBase) {
+                    }
+                    else if (!sameBase) {
                         location.href = url;
-                    } else {
+                    }
+                    else {
                         location.hash = getHash(url);
                     }
                     if (location.href !== url) {
@@ -6252,7 +6387,8 @@
                 }
                 return self;
                 // getter
-            } else {
+            }
+            else {
                 // - pendingLocation is needed as browsers don't allow to read out
                 //   the new location.href if a reload happened or if there is a bug like in iOS 9 (see
                 //   https://openradar.appspot.com/22186109).
@@ -6738,7 +6874,8 @@
                     if (entry !== freshEnd) {
                         if (!staleEnd) {
                             staleEnd = entry;
-                        } else if (staleEnd === entry) {
+                        }
+                        else if (staleEnd === entry) {
                             staleEnd = entry.n;
                         }
 
@@ -7879,7 +8016,8 @@
                     bindings.bindToController = parseIsolateBindings(directive.scope,
                         directiveName, true);
                     bindings.isolateScope = {};
-                } else {
+                }
+                else {
                     bindings.isolateScope = parseIsolateBindings(directive.scope,
                         directiveName, false);
                 }
@@ -7965,7 +8103,8 @@
                                     var directive = $injector.invoke(directiveFactory);
                                     if (isFunction(directive)) {
                                         directive = { compile: valueFn(directive) };
-                                    } else if (!directive.compile && directive.link) {
+                                    }
+                                    else if (!directive.compile && directive.link) {
                                         directive.compile = valueFn(directive.link);
                                     }
                                     directive.priority = directive.priority || 0;
@@ -7975,7 +8114,8 @@
                                     directive.restrict = getDirectiveRestrict(directive.restrict, name);
                                     directive.$$moduleName = directiveFactory.$$moduleName;
                                     directives.push(directive);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             });
@@ -7983,7 +8123,8 @@
                         }]);
                 }
                 hasDirectives[name].push(directiveFactory);
-            } else {
+            }
+            else {
                 forEach(name, reverseParams(registerDirective));
             }
             return this;
@@ -8084,7 +8225,8 @@
                         return /** @this */ function(tElement, tAttrs) {
                             return $injector.invoke(fn, this, {$element: tElement, $attrs: tAttrs});
                         };
-                    } else {
+                    }
+                    else {
                         return fn;
                     }
                 }
@@ -8155,7 +8297,8 @@
             if (isDefined(regexp)) {
                 $$sanitizeUriProvider.aHrefSanitizationWhitelist(regexp);
                 return this;
-            } else {
+            }
+            else {
                 return $$sanitizeUriProvider.aHrefSanitizationWhitelist();
             }
         };
@@ -8185,7 +8328,8 @@
             if (isDefined(regexp)) {
                 $$sanitizeUriProvider.imgSrcSanitizationWhitelist(regexp);
                 return this;
-            } else {
+            }
+            else {
                 return $$sanitizeUriProvider.imgSrcSanitizationWhitelist();
             }
         };
@@ -8370,7 +8514,8 @@
                             for (var i = 0, ii = onChangesQueue.length; i < ii; ++i) {
                                 try {
                                     onChangesQueue[i]();
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     errors.push(e);
                                 }
                             }
@@ -8380,7 +8525,8 @@
                                 throw errors;
                             }
                         });
-                    } finally {
+                    }
+                    finally {
                         onChangesTtl++;
                     }
                 }
@@ -8395,7 +8541,8 @@
                             key = keys[i];
                             this[key] = attributesToCopy[key];
                         }
-                    } else {
+                    }
+                    else {
                         this.$attr = {};
                     }
 
@@ -8502,7 +8649,8 @@
                         if (booleanKey) {
                             this.$$element.prop(key, value);
                             attrName = booleanKey;
-                        } else if (aliasedKey) {
+                        }
+                        else if (aliasedKey) {
                             this[aliasedKey] = value;
                             observer = aliasedKey;
                         }
@@ -8512,7 +8660,8 @@
                         // translate normalized key to actual key
                         if (attrName) {
                             this.$attr[key] = attrName;
-                        } else {
+                        }
+                        else {
                             attrName = this.$attr[key];
                             if (!attrName) {
                                 this.$attr[key] = attrName = snake_case(key, '-');
@@ -8525,7 +8674,8 @@
             (nodeName === 'img' && key === 'src')) {
                             // sanitize a[href] and img[src] values
                             this[key] = value = $$sanitizeUri(value, key === 'src');
-                        } else if (nodeName === 'img' && key === 'srcset' && isDefined(value)) {
+                        }
+                        else if (nodeName === 'img' && key === 'srcset' && isDefined(value)) {
                             // sanitize img[srcset] values
                             var result = '';
 
@@ -8564,10 +8714,12 @@
                         if (writeAttr !== false) {
                             if (value === null || isUndefined(value)) {
                                 this.$$element.removeAttr(attrName);
-                            } else {
+                            }
+                            else {
                                 if (SIMPLE_ATTR_NAME.test(attrName)) {
                                     this.$$element.attr(attrName, value);
-                                } else {
+                                }
+                                else {
                                     setSpecialAttr(this.$$element[0], attrName, value);
                                 }
                             }
@@ -8579,7 +8731,8 @@
                             forEach($$observers[observer], function(fn) {
                                 try {
                                     fn(value);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             });
@@ -8641,7 +8794,8 @@
                 function safeAddClass($element, className) {
                     try {
                         $element.addClass(className);
-                    } catch (e) {
+                    }
+                    catch (e) {
                         // ignore, since it means that we are trying to set class on
                         // SVG element, where class name is read-only.
                     }
@@ -8663,7 +8817,8 @@
 
                     if (isArray(binding)) {
                         bindings = bindings.concat(binding);
-                    } else {
+                    }
+                    else {
                         bindings.push(binding);
                     }
 
@@ -8748,11 +8903,13 @@
                             $linkNode = jqLite(
                                 wrapTemplate(namespace, jqLite('<div>').append($compileNodes).html())
                             );
-                        } else if (cloneConnectFn) {
+                        }
+                        else if (cloneConnectFn) {
                             // important!!: we must call our jqLite.clone() since the jQuery one is trying to be smart
                             // and sometimes changes the structure of the DOM.
                             $linkNode = JQLitePrototype.clone.call($compileNodes);
-                        } else {
+                        }
+                        else {
                             $linkNode = $compileNodes;
                         }
 
@@ -8779,7 +8936,8 @@
                     var node = parentElement && parentElement[0];
                     if (!node) {
                         return 'html';
-                    } else {
+                    }
+                    else {
                         return nodeName_(node) !== 'foreignobject' && toString.call(node).match(/SVG/) ? 'svg' : 'html';
                     }
                 }
@@ -8869,7 +9027,8 @@
                                 idx = linkFns[i];
                                 stableNodeList[idx] = nodeList[idx];
                             }
-                        } else {
+                        }
+                        else {
                             stableNodeList = nodeList;
                         }
 
@@ -8882,7 +9041,8 @@
                                 if (nodeLinkFn.scope) {
                                     childScope = scope.$new();
                                     compile.$$addScopeInfo(jqLite(node), childScope);
-                                } else {
+                                }
+                                else {
                                     childScope = scope;
                                 }
 
@@ -8890,19 +9050,23 @@
                                     childBoundTranscludeFn = createBoundTranscludeFn(
                                         scope, nodeLinkFn.transclude, parentBoundTranscludeFn);
 
-                                } else if (!nodeLinkFn.templateOnThisElement && parentBoundTranscludeFn) {
+                                }
+                                else if (!nodeLinkFn.templateOnThisElement && parentBoundTranscludeFn) {
                                     childBoundTranscludeFn = parentBoundTranscludeFn;
 
-                                } else if (!parentBoundTranscludeFn && transcludeFn) {
+                                }
+                                else if (!parentBoundTranscludeFn && transcludeFn) {
                                     childBoundTranscludeFn = createBoundTranscludeFn(scope, transcludeFn);
 
-                                } else {
+                                }
+                                else {
                                     childBoundTranscludeFn = null;
                                 }
 
                                 nodeLinkFn(childLinkFn, childScope, node, $rootElement, childBoundTranscludeFn);
 
-                            } else if (childLinkFn) {
+                            }
+                            else if (childLinkFn) {
                                 childLinkFn(scope, node.childNodes, undefined, parentBoundTranscludeFn);
                             }
                         }
@@ -8956,7 +9120,8 @@
                     for (var slotName in transcludeFn.$$slots) {
                         if (transcludeFn.$$slots[slotName]) {
                             boundSlots[slotName] = createBoundTranscludeFn(scope, transcludeFn.$$slots[slotName], previousBoundTranscludeFn);
-                        } else {
+                        }
+                        else {
                             boundSlots[slotName] = null;
                         }
                     }
@@ -9077,7 +9242,8 @@
                                 attrs[nName] = trim(match[2]);
                             }
                         }
-                    } catch (e) {
+                    }
+                    catch (e) {
                         // turns out that under some circumstances IE9 throws errors when one attempts to read
                         // comment's node value.
                         // Just ignore it and continue. (Can't seem to reproduce in test case.)
@@ -9109,7 +9275,8 @@
                             nodes.push(node);
                             node = node.nextSibling;
                         } while (depth > 0);
-                    } else {
+                    }
+                    else {
                         nodes.push(node);
                     }
 
@@ -9237,7 +9404,8 @@
                                     assertNoDuplicate('new/isolated scope', newIsolateScopeDirective || newScopeDirective,
                                         directive, $compileNode);
                                     newIsolateScopeDirective = directive;
-                                } else {
+                                }
+                                else {
                                     // This directive is trying to add a child scope.
                                     // Check that there is no isolated scope already
                                     assertNoDuplicate('new/isolated scope', newIsolateScopeDirective, directive,
@@ -9322,13 +9490,15 @@
                                         // on the same element more than once.
                                         nonTlbTranscludeDirective: nonTlbTranscludeDirective
                                     });
-                            } else {
+                            }
+                            else {
 
                                 var slots = createMap();
 
                                 if (!isObject(directiveValue)) {
                                     $template = jqLite(jqLiteClone(compileNode)).contents();
-                                } else {
+                                }
+                                else {
 
                                     // We have transclusion slots,
                                     // collect them up, compile them and store their transclusion functions
@@ -9362,7 +9532,8 @@
                                             filledSlots[slotName] = true;
                                             slots[slotName] = slots[slotName] || [];
                                             slots[slotName].push(node);
-                                        } else {
+                                        }
+                                        else {
                                             $template.push(node);
                                         }
                                     });
@@ -9404,7 +9575,8 @@
                                 replaceDirective = directive;
                                 if (jqLiteIsTextNode(directiveValue)) {
                                     $template = [];
-                                } else {
+                                }
+                                else {
                                     $template = removeComments(wrapTemplate(directive.templateNamespace, trim(directiveValue)));
                                 }
                                 compileNode = $template[0];
@@ -9437,7 +9609,8 @@
                                 mergeTemplateAttributes(templateAttrs, newTemplateAttrs);
 
                                 ii = directives.length;
-                            } else {
+                            }
+                            else {
                                 $compileNode.html(directiveValue);
                             }
                         }
@@ -9461,16 +9634,19 @@
                                     nonTlbTranscludeDirective: nonTlbTranscludeDirective
                                 });
                             ii = directives.length;
-                        } else if (directive.compile) {
+                        }
+                        else if (directive.compile) {
                             try {
                                 linkFn = directive.compile($compileNode, templateAttrs, childTranscludeFn);
                                 var context = directive.$$originalDirective || directive;
                                 if (isFunction(linkFn)) {
                                     addLinkFns(null, bind(context, linkFn), attrStart, attrEnd);
-                                } else if (linkFn) {
+                                }
+                                else if (linkFn) {
                                     addLinkFns(bind(context, linkFn.pre), bind(context, linkFn.post), attrStart, attrEnd);
                                 }
-                            } catch (e) {
+                            }
+                            catch (e) {
                                 $exceptionHandler(e, startingTag($compileNode));
                             }
                         }
@@ -9522,7 +9698,8 @@
                         if (compileNode === linkNode) {
                             attrs = templateAttrs;
                             $element = templateAttrs.$$element;
-                        } else {
+                        }
+                        else {
                             $element = jqLite(linkNode);
                             attrs = new Attributes($element, templateAttrs);
                         }
@@ -9530,7 +9707,8 @@
                         controllerScope = scope;
                         if (newIsolateScopeDirective) {
                             isolateScope = scope.$new(true);
-                        } else if (newScopeDirective) {
+                        }
+                        else if (newScopeDirective) {
                             controllerScope = scope.$parent;
                         }
 
@@ -9574,7 +9752,8 @@
                                 if (bindings) {
                                     controller.bindingInfo =
                 initializeDirectiveBindings(controllerScope, attrs, controller.instance, bindings, controllerDirective);
-                                } else {
+                                }
+                                else {
                                     controller.bindingInfo = {};
                                 }
 
@@ -9590,7 +9769,8 @@
                                     controller.bindingInfo =
                 initializeDirectiveBindings(controllerScope, attrs, controller.instance, bindings, controllerDirective);
                                 }
-                            } else {
+                            }
+                            else {
                                 controller.instance = controller();
                                 $element.data('$' + controllerDirective.name + 'Controller', controller.instance);
                                 controller.bindingInfo =
@@ -9612,19 +9792,23 @@
                             if (isFunction(controllerInstance.$onChanges)) {
                                 try {
                                     controllerInstance.$onChanges(controller.bindingInfo.initialChanges);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             }
                             if (isFunction(controllerInstance.$onInit)) {
                                 try {
                                     controllerInstance.$onInit();
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             }
                             if (isFunction(controllerInstance.$doCheck)) {
-                                controllerScope.$watch(function() { controllerInstance.$doCheck(); });
+                                controllerScope.$watch(function() {
+                                    controllerInstance.$doCheck(); 
+                                });
                                 controllerInstance.$doCheck();
                             }
                             if (isFunction(controllerInstance.$onDestroy)) {
@@ -9703,13 +9887,15 @@
                                 var slotTranscludeFn = boundTranscludeFn.$$slots[slotName];
                                 if (slotTranscludeFn) {
                                     return slotTranscludeFn(scope, cloneAttachFn, transcludeControllers, futureParentElement, scopeToChild);
-                                } else if (isUndefined(slotTranscludeFn)) {
+                                }
+                                else if (isUndefined(slotTranscludeFn)) {
                                     throw $compileMinErr('noslot',
                                         'No parent directive that requires a transclusion with slot name "{0}". ' +
                'Element: {1}',
                                         slotName, startingTag($element));
                                 }
-                            } else {
+                            }
+                            else {
                                 return boundTranscludeFn(scope, cloneAttachFn, transcludeControllers, futureParentElement, scopeToChild);
                             }
                         }
@@ -9730,7 +9916,8 @@
                             $element = $element.parent();
                             //Otherwise attempt getting the controller from elementControllers in case
                             //the element is transcluded (and has no data) and to avoid .data if possible
-                        } else {
+                        }
+                        else {
                             value = elementControllers && elementControllers[name];
                             value = value && value.instance;
                         }
@@ -9745,12 +9932,14 @@
                                 'Controller \'{0}\', required by directive \'{1}\', can\'t be found!',
                                 name, directiveName);
                         }
-                    } else if (isArray(require)) {
+                    }
+                    else if (isArray(require)) {
                         value = [];
                         for (var i = 0, ii = require.length; i < ii; i++) {
                             value[i] = getControllers(directiveName, require[i], $element, elementControllers);
                         }
-                    } else if (isObject(require)) {
+                    }
+                    else if (isObject(require)) {
                         value = {};
                         forEach(require, function(controller, property) {
                             value[property] = getControllers(directiveName, controller, $element, elementControllers);
@@ -9882,7 +10071,8 @@
                             if (src[key] && src[key] !== value) {
                                 if (value.length) {
                                     value += (key === 'style' ? ';' : ' ') + src[key];
-                                } else {
+                                }
+                                else {
                                     value = src[key];
                                 }
                             }
@@ -9933,7 +10123,8 @@
                             if (origAsyncDirective.replace) {
                                 if (jqLiteIsTextNode(content)) {
                                     $template = [];
-                                } else {
+                                }
+                                else {
                                     $template = removeComments(wrapTemplate(templateNamespace, trim(content)));
                                 }
                                 compileNode = $template[0];
@@ -9955,7 +10146,8 @@
                                 }
                                 directives = templateDirectives.concat(directives);
                                 mergeTemplateAttributes(tAttrs, tempTemplateAttrs);
-                            } else {
+                            }
+                            else {
                                 compileNode = beforeTemplateCompileNode;
                                 $compileNode.html(content);
                             }
@@ -9996,7 +10188,8 @@
                                 }
                                 if (afterTemplateNodeLinkFn.transcludeOnThisElement) {
                                     childBoundTranscludeFn = createBoundTranscludeFn(scope, afterTemplateNodeLinkFn.transclude, boundTranscludeFn);
-                                } else {
+                                }
+                                else {
                                     childBoundTranscludeFn = boundTranscludeFn;
                                 }
                                 afterTemplateNodeLinkFn(afterTemplateChildLinkFn, scope, linkNode, $rootElement,
@@ -10017,7 +10210,8 @@
                                 node,
                                 rootElement,
                                 childBoundTranscludeFn);
-                        } else {
+                        }
+                        else {
                             if (afterTemplateNodeLinkFn.transcludeOnThisElement) {
                                 childBoundTranscludeFn = createBoundTranscludeFn(scope, afterTemplateNodeLinkFn.transclude, boundTranscludeFn);
                             }
@@ -10106,7 +10300,8 @@
                             return $sce.RESOURCE_URL;
                         }
                         // maction[xlink:href] can source SVG.  It's not limited to <maction>.
-                    } else if (attrNormalizedName === 'xlinkHref' ||
+                    }
+                    else if (attrNormalizedName === 'xlinkHref' ||
           (tag === 'form' && attrNormalizedName === 'action') ||
           // links can be stylesheets or imports, which can run script in the current origin
           (tag === 'link' && attrNormalizedName === 'href')
@@ -10175,7 +10370,8 @@
                                             //the CSS classes are the non-interpolated values
                                             if (name === 'class' && newValue !== oldValue) {
                                                 attr.$updateClass(newValue, oldValue);
-                                            } else {
+                                            }
+                                            else {
                                                 attr.$set(name, newValue);
                                             }
                                         });
@@ -10211,7 +10407,8 @@
                                     j < jj; j++, j2++) {
                                     if (j2 < jj) {
                                         $rootElement[j] = $rootElement[j2];
-                                    } else {
+                                    }
+                                    else {
                                         delete $rootElement[j];
                                     }
                                 }
@@ -10265,14 +10462,17 @@
 
 
                 function cloneAndAnnotateFn(fn, annotation) {
-                    return extend(function() { return fn.apply(null, arguments); }, fn, annotation);
+                    return extend(function() {
+                        return fn.apply(null, arguments); 
+                    }, fn, annotation);
                 }
 
 
                 function invokeLinkFn(linkFn, scope, $element, attrs, controllers, transcludeFn) {
                     try {
                         linkFn(scope, $element, attrs, controllers, transcludeFn);
-                    } catch (e) {
+                    }
+                    catch (e) {
                         $exceptionHandler(e, startingTag($element));
                     }
                 }
@@ -10309,7 +10509,8 @@
                                 // If the attribute has been provided then we trigger an interpolation to ensure
                                 // the value is there for use in the link fn
                                 destination[scopeName] = $interpolate(lastValue)(scope);
-                            } else if (isBoolean(lastValue)) {
+                            }
+                            else if (isBoolean(lastValue)) {
                                 // If the attributes is one of the BOOLEAN_ATTR then Angular will have converted
                                 // the value to boolean rather than a string, so we special case this situation
                                 destination[scopeName] = lastValue;
@@ -10328,9 +10529,12 @@
                             parentGet = $parse(attrs[attrName]);
                             if (parentGet.literal) {
                                 compare = equals;
-                            } else {
+                            }
+                            else {
                                 // eslint-disable-next-line no-self-compare
-                                compare = function simpleCompare(a, b) { return a === b || (a !== a && b !== b); };
+                                compare = function simpleCompare(a, b) {
+                                    return a === b || (a !== a && b !== b); 
+                                };
                             }
                             parentSet = parentGet.assign || function() {
                                 // reset the change, or we will throw this exception on every $digest
@@ -10346,7 +10550,8 @@
                                     if (!compare(parentValue, lastValue)) {
                                         // parent changed and it has precedence
                                         destination[scopeName] = parentValue;
-                                    } else {
+                                    }
+                                    else {
                                         // if the parent can be assigned then do so
                                         parentSet(scope, parentValue = destination[scopeName]);
                                     }
@@ -10357,7 +10562,8 @@
                             parentValueWatch.$stateful = true;
                             if (definition.collection) {
                                 removeWatch = scope.$watchCollection(attrs[attrName], parentValueWatch);
-                            } else {
+                            }
+                            else {
                                 removeWatch = scope.$watch($parse(attrs[attrName], parentValueWatch), null, parentGet.literal);
                             }
                             removeWatchCollection.push(removeWatch);
@@ -10449,7 +10655,9 @@
         this.previousValue = previous;
         this.currentValue = current;
     }
-    SimpleChange.prototype.isFirstChange = function() { return this.previousValue === _UNINITIALIZED_VALUE; };
+    SimpleChange.prototype.isFirstChange = function() {
+        return this.previousValue === _UNINITIALIZED_VALUE; 
+    };
 
 
     var PREFIX_REGEXP = /^((?:x|data)[:\-_])/i;
@@ -10609,7 +10817,8 @@
             assertNotHasOwnProperty(name, 'controller');
             if (isObject(name)) {
                 extend(controllers, name);
-            } else {
+            }
+            else {
                 controllers[name] = constructor;
             }
         };
@@ -10876,7 +11085,8 @@
                     if (!domNode.nodeType && domNode instanceof jqLite) {
                         domNode = domNode[0];
                     }
-                } else {
+                }
+                else {
                     domNode = $document[0].body;
                 }
                 return domNode.offsetWidth + 1;
@@ -10930,7 +11140,8 @@
                         forEach(value, function(v) {
                             parts.push(encodeUriQuery(key)  + '=' + encodeUriQuery(serializeValue(v)));
                         });
-                    } else {
+                    }
+                    else {
                         parts.push(encodeUriQuery(key) + '=' + encodeUriQuery(serializeValue(value)));
                     }
                 });
@@ -10999,14 +11210,16 @@
                         forEach(toSerialize, function(value, index) {
                             serialize(value, prefix + '[' + (isObject(value) ? index : '') + ']');
                         });
-                    } else if (isObject(toSerialize) && !isDate(toSerialize)) {
+                    }
+                    else if (isObject(toSerialize) && !isDate(toSerialize)) {
                         forEachSorted(toSerialize, function(value, key) {
                             serialize(value, prefix +
                 (topLevel ? '' : '[') +
                 key +
                 (topLevel ? '' : ']'));
                         });
-                    } else {
+                    }
+                    else {
                         parts.push(encodeUriQuery(prefix) + '=' + encodeUriQuery(serializeValue(toSerialize)));
                     }
                 }
@@ -11055,7 +11268,8 @@
                 i = line.indexOf(':');
                 fillInParsed(lowercase(trim(line.substr(0, i))), trim(line.substr(i + 1)));
             });
-        } else if (isObject(headers)) {
+        }
+        else if (isObject(headers)) {
             forEach(headers, function(headerVal, headerKey) {
                 fillInParsed(lowercase(headerKey), trim(headerVal));
             });
@@ -11876,7 +12090,8 @@
                                 if (headerContent != null) {
                                     processedHeaders[header] = headerContent;
                                 }
-                            } else {
+                            }
+                            else {
                                 processedHeaders[header] = headerFn;
                             }
                         });
@@ -12121,7 +12336,8 @@
                         // JSONP is a pretty sensitive operation where we're allowing a script to have full access to
                         // our DOM and JS space.  So we require that the URL satisfies SCE.RESOURCE_URL.
                         url = $sce.getTrustedResourceUrl(url);
-                    } else if (!isString(url)) {
+                    }
+                    else if (!isString(url)) {
                         // If it is not a string then the URL must be a $sce trusted object
                         url = $sce.valueOf(url);
                     }
@@ -12150,15 +12366,18 @@
                             if (isPromiseLike(cachedResp)) {
                                 // cached request has already been sent, but there is no response yet
                                 cachedResp.then(resolvePromiseWithResult, resolvePromiseWithResult);
-                            } else {
+                            }
+                            else {
                                 // serving from cache
                                 if (isArray(cachedResp)) {
                                     resolvePromise(cachedResp[1], cachedResp[0], shallowCopy(cachedResp[2]), cachedResp[3]);
-                                } else {
+                                }
+                                else {
                                     resolvePromise(cachedResp, 200, {}, 'OK');
                                 }
                             }
-                        } else {
+                        }
+                        else {
                             // put the promise for the non-transformed response into cache as a placeholder
                             cache.put(url, promise);
                         }
@@ -12190,9 +12409,11 @@
                                 applyHandlers[key] = function(event) {
                                     if (useApplyAsync) {
                                         $rootScope.$applyAsync(callEventHandler);
-                                    } else if ($rootScope.$$phase) {
+                                    }
+                                    else if ($rootScope.$$phase) {
                                         callEventHandler();
-                                    } else {
+                                    }
+                                    else {
                                         $rootScope.$apply(callEventHandler);
                                     }
 
@@ -12216,7 +12437,8 @@
                         if (cache) {
                             if (isSuccess(status)) {
                                 cache.put(url, [status, response, parseHeaders(headersString), statusText]);
-                            } else {
+                            }
+                            else {
                                 // remove promise from the cache
                                 cache.remove(url);
                             }
@@ -12228,7 +12450,8 @@
 
                         if (useApplyAsync) {
                             $rootScope.$applyAsync(resolveHttpPromise);
-                        } else {
+                        }
+                        else {
                             resolveHttpPromise();
                             if (!$rootScope.$$phase) $rootScope.$apply();
                         }
@@ -12356,7 +12579,8 @@
                     completeRequest(callback, status, response, '', text);
                     callbacks.removeCallback(callbackPath);
                 });
-            } else {
+            }
+            else {
 
                 var xhr = createXhr(method, url);
 
@@ -12416,7 +12640,8 @@
                 if (responseType) {
                     try {
                         xhr.responseType = responseType;
-                    } catch (e) {
+                    }
+                    catch (e) {
                         // WebKit added support for the json responseType value on 09/03/2013
                         // https://bugs.webkit.org/show_bug.cgi?id=73648. Versions of Safari prior to 7 are
                         // known to throw when setting the value "json" as the response type. Other older
@@ -12435,7 +12660,8 @@
 
             if (timeout > 0) {
                 var timeoutId = $browserDefer(timeoutRequest, timeout);
-            } else if (isPromiseLike(timeout)) {
+            }
+            else if (isPromiseLike(timeout)) {
                 timeout.then(timeoutRequest);
             }
 
@@ -12571,7 +12797,8 @@
             if (value) {
                 startSymbol = value;
                 return this;
-            } else {
+            }
+            else {
                 return startSymbol;
             }
         };
@@ -12589,7 +12816,8 @@
             if (value) {
                 endSymbol = value;
                 return this;
-            } else {
+            }
+            else {
                 return endSymbol;
             }
         };
@@ -12774,7 +13002,8 @@
                         index = endIndex + endSymbolLength;
                         expressionPositions.push(concat.length);
                         concat.push('');
-                    } else {
+                    }
+                    else {
                         // we did not find an interpolation, so we have to add the remainder to the separators array
                         if (index !== textLength) {
                             concat.push(unescapeText(text.substring(index)));
@@ -12819,7 +13048,8 @@
                             }
 
                             return compute(values);
-                        } catch (err) {
+                        }
+                        catch (err) {
                             $exceptionHandler($interpolateMinErr.interr(text, err));
                         }
 
@@ -12844,7 +13074,8 @@
                     try {
                         value = getValue(value);
                         return allOrNothing && !isDefined(value) ? value : stringify(value);
-                    } catch (err) {
+                    }
+                    catch (err) {
                         $exceptionHandler($interpolateMinErr.interr(text, err));
                     }
                 }
@@ -13034,7 +13265,8 @@
                     promise.$$intervalId = setInterval(function tick() {
                         if (skipApply) {
                             $browser.defer(callback);
-                        } else {
+                        }
+                        else {
                             $rootScope.$evalAsync(callback);
                         }
                         deferred.notify(iteration++);
@@ -13056,7 +13288,8 @@
                     function callback() {
                         if (!hasParams) {
                             fn(iteration);
-                        } else {
+                        }
+                        else {
                             fn.apply(null, args);
                         }
                     }
@@ -13337,12 +13570,15 @@
                 prevAppUrl = appUrl;
                 if (basePrefix && isDefined(appUrl = stripBaseUrl(basePrefix, appUrl))) {
                     rewrittenUrl = appBaseNoFile + (stripBaseUrl('/', appUrl) || appUrl);
-                } else {
+                }
+                else {
                     rewrittenUrl = appBase + prevAppUrl;
                 }
-            } else if (isDefined(appUrl = stripBaseUrl(appBaseNoFile, url))) {
+            }
+            else if (isDefined(appUrl = stripBaseUrl(appBaseNoFile, url))) {
                 rewrittenUrl = appBaseNoFile + appUrl;
-            } else if (appBaseNoFile === url + '/') {
+            }
+            else if (appBaseNoFile === url + '/') {
                 rewrittenUrl = appBaseNoFile;
             }
             if (rewrittenUrl) {
@@ -13387,13 +13623,15 @@
                     withoutHashUrl = withoutBaseUrl;
                 }
 
-            } else {
+            }
+            else {
                 // There was no hashbang path nor hash fragment:
                 // If we are in HTML5 mode we use what is left as the path;
                 // Otherwise we ignore what is left
                 if (this.$$html5) {
                     withoutHashUrl = withoutBaseUrl;
-                } else {
+                }
+                else {
                     withoutHashUrl = '';
                     if (isUndefined(withoutBaseUrl)) {
                         appBase = url;
@@ -13494,9 +13732,11 @@
 
             if (appBase === stripHash(url)) {
                 rewrittenUrl = url;
-            } else if ((appUrl = stripBaseUrl(appBaseNoFile, url))) {
+            }
+            else if ((appUrl = stripBaseUrl(appBaseNoFile, url))) {
                 rewrittenUrl = appBase + hashPrefix + appUrl;
-            } else if (appBaseNoFile === url + '/') {
+            }
+            else if (appBaseNoFile === url + '/') {
                 rewrittenUrl = appBaseNoFile;
             }
             if (rewrittenUrl) {
@@ -13744,7 +13984,8 @@
                 if (isString(search) || isNumber(search)) {
                     search = search.toString();
                     this.$$search = parseKeyValue(search);
-                } else if (isObject(search)) {
+                }
+                else if (isObject(search)) {
                     search = copy(search, {});
                     // remove object undefined or null properties
                     forEach(search, function(value, key) {
@@ -13752,7 +13993,8 @@
                     });
 
                     this.$$search = search;
-                } else {
+                }
+                else {
                     throw $locationMinErr('isrcharg',
                         'The first argument of the `$location#search()` call must be a string or an object.');
                 }
@@ -13760,7 +14002,8 @@
             default:
                 if (isUndefined(paramValue) || paramValue === null) {
                     delete this.$$search[search];
-                } else {
+                }
+                else {
                     this.$$search[search] = paramValue;
                 }
             }
@@ -13925,7 +14168,8 @@
             if (isDefined(prefix)) {
                 hashPrefix = prefix;
                 return this;
-            } else {
+            }
+            else {
                 return hashPrefix;
             }
         };
@@ -13957,7 +14201,8 @@
             if (isBoolean(mode)) {
                 html5Mode.enabled = mode;
                 return this;
-            } else if (isObject(mode)) {
+            }
+            else if (isObject(mode)) {
 
                 if (isBoolean(mode.enabled)) {
                     html5Mode.enabled = mode.enabled;
@@ -13972,7 +14217,8 @@
                 }
 
                 return this;
-            } else {
+            }
+            else {
                 return html5Mode;
             }
         };
@@ -14031,7 +14277,8 @@
                     }
                     appBase = serverBase(initialUrl) + (baseHref || '/');
                     LocationMode = $sniffer.history ? LocationHtml5Url : LocationHashbangInHtml5Url;
-                } else {
+                }
+                else {
                     appBase = stripHash(initialUrl);
                     LocationMode = LocationHashbangUrl;
                 }
@@ -14054,7 +14301,8 @@
                         // state object; this makes possible quick checking if the state changed in the digest
                         // loop. Checking deep equality would be too expensive.
                         $location.$$state = $browser.state();
-                    } catch (e) {
+                    }
+                    catch (e) {
                         // Restore old values if pushState fails
                         $location.url(oldUrl);
                         $location.$$state = oldState;
@@ -14146,7 +14394,8 @@
                             $location.$$parse(oldUrl);
                             $location.$$state = oldState;
                             setBrowserUrlWithFallback(oldUrl, false, oldState);
-                        } else {
+                        }
+                        else {
                             initializing = false;
                             afterLocationChange(oldUrl, oldState);
                         }
@@ -14181,7 +14430,8 @@
                                 if (defaultPrevented) {
                                     $location.$$parse(oldUrl);
                                     $location.$$state = oldState;
-                                } else {
+                                }
+                                else {
                                     if (urlOrStateChanged) {
                                         setBrowserUrlWithFallback(newUrl, currentReplace,
                                             oldState === $location.$$state ? null : $location.$$state);
@@ -14268,7 +14518,8 @@
             if (isDefined(flag)) {
                 debug = flag;
                 return this;
-            } else {
+            }
+            else {
                 return debug;
             }
         };
@@ -14335,7 +14586,8 @@
                         arg = (arg.message && arg.stack.indexOf(arg.message) === -1)
                             ? 'Error: ' + arg.message + '\n' + arg.stack
                             : arg.stack;
-                    } else if (arg.sourceURL) {
+                    }
+                    else if (arg.sourceURL) {
                         arg = arg.message + '\n' + arg.sourceURL + ':' + arg.line;
                     }
                 }
@@ -14351,7 +14603,8 @@
                 // The reason behind this is that console.log has type "object" in IE8...
                 try {
                     hasApply = !!logFn.apply;
-                } catch (e) { /* empty */ }
+                }
+                catch (e) { /* empty */ }
 
                 if (hasApply) {
                     return function() {
@@ -14422,7 +14675,9 @@
 
 
     var OPERATORS = createMap();
-    forEach('+ - * / % === !== == != < > <= >= && || ! = |'.split(' '), function(operator) { OPERATORS[operator] = true; });
+    forEach('+ - * / % === !== == != < > <= >= && || ! = |'.split(' '), function(operator) {
+        OPERATORS[operator] = true; 
+    });
     var ESCAPE = {'n':'\n', 'f':'\f', 'r':'\r', 't':'\t', 'v':'\v', '\'':'\'', '"':'"'};
 
 
@@ -14448,16 +14703,21 @@
                 var ch = this.text.charAt(this.index);
                 if (ch === '"' || ch === '\'') {
                     this.readString(ch);
-                } else if (this.isNumber(ch) || ch === '.' && this.isNumber(this.peek())) {
+                }
+                else if (this.isNumber(ch) || ch === '.' && this.isNumber(this.peek())) {
                     this.readNumber();
-                } else if (this.isIdentifierStart(this.peekMultichar())) {
+                }
+                else if (this.isIdentifierStart(this.peekMultichar())) {
                     this.readIdent();
-                } else if (this.is(ch, '(){}[].,;:?')) {
+                }
+                else if (this.is(ch, '(){}[].,;:?')) {
                     this.tokens.push({index: this.index, text: ch});
                     this.index++;
-                } else if (this.isWhitespace(ch)) {
+                }
+                else if (this.isWhitespace(ch)) {
                     this.index++;
-                } else {
+                }
+                else {
                     var ch2 = ch + this.peek();
                     var ch3 = ch2 + this.peek(2);
                     var op1 = OPERATORS[ch];
@@ -14467,7 +14727,8 @@
                         var token = op3 ? ch3 : (op2 ? ch2 : ch);
                         this.tokens.push({index: this.index, text: token, operator: true});
                         this.index += token.length;
-                    } else {
+                    }
+                    else {
                         this.throwError('Unexpected next character ', this.index, this.index + 1);
                     }
                 }
@@ -14556,19 +14817,23 @@
                 var ch = lowercase(this.text.charAt(this.index));
                 if (ch === '.' || this.isNumber(ch)) {
                     number += ch;
-                } else {
+                }
+                else {
                     var peekCh = this.peek();
                     if (ch === 'e' && this.isExpOperator(peekCh)) {
                         number += ch;
-                    } else if (this.isExpOperator(ch) &&
+                    }
+                    else if (this.isExpOperator(ch) &&
             peekCh && this.isNumber(peekCh) &&
             number.charAt(number.length - 1) === 'e') {
                         number += ch;
-                    } else if (this.isExpOperator(ch) &&
+                    }
+                    else if (this.isExpOperator(ch) &&
             (!peekCh || !this.isNumber(peekCh)) &&
             number.charAt(number.length - 1) === 'e') {
                         this.throwError('Invalid exponent');
-                    } else {
+                    }
+                    else {
                         break;
                     }
                 }
@@ -14616,14 +14881,17 @@
                         }
                         this.index += 4;
                         string += String.fromCharCode(parseInt(hex, 16));
-                    } else {
+                    }
+                    else {
                         var rep = ESCAPE[ch];
                         string = string + (rep || ch);
                     }
                     escape = false;
-                } else if (ch === '\\') {
+                }
+                else if (ch === '\\') {
                     escape = true;
-                } else if (ch === quote) {
+                }
+                else if (ch === quote) {
                     this.index++;
                     this.tokens.push({
                         index: start,
@@ -14632,7 +14900,8 @@
                         value: string
                     });
                     return;
-                } else {
+                }
+                else {
                     string += ch;
                 }
                 this.index++;
@@ -14789,7 +15058,8 @@
             var token;
             if ((token = this.expect('+', '-', '!'))) {
                 return { type: AST.UnaryExpression, operator: token.text, prefix: true, argument: this.unary() };
-            } else {
+            }
+            else {
                 return this.primary();
             }
         },
@@ -14799,19 +15069,26 @@
             if (this.expect('(')) {
                 primary = this.filterChain();
                 this.consume(')');
-            } else if (this.expect('[')) {
+            }
+            else if (this.expect('[')) {
                 primary = this.arrayDeclaration();
-            } else if (this.expect('{')) {
+            }
+            else if (this.expect('{')) {
                 primary = this.object();
-            } else if (this.selfReferential.hasOwnProperty(this.peek().text)) {
+            }
+            else if (this.selfReferential.hasOwnProperty(this.peek().text)) {
                 primary = copy(this.selfReferential[this.consume().text]);
-            } else if (this.options.literals.hasOwnProperty(this.peek().text)) {
+            }
+            else if (this.options.literals.hasOwnProperty(this.peek().text)) {
                 primary = { type: AST.Literal, value: this.options.literals[this.consume().text]};
-            } else if (this.peek().identifier) {
+            }
+            else if (this.peek().identifier) {
                 primary = this.identifier();
-            } else if (this.peek().constant) {
+            }
+            else if (this.peek().constant) {
                 primary = this.constant();
-            } else {
+            }
+            else {
                 this.throwError('not a primary expression', this.peek());
             }
 
@@ -14820,12 +15097,15 @@
                 if (next.text === '(') {
                     primary = {type: AST.CallExpression, callee: primary, arguments: this.parseArguments() };
                     this.consume(')');
-                } else if (next.text === '[') {
+                }
+                else if (next.text === '[') {
                     primary = { type: AST.MemberExpression, object: primary, property: this.expression(), computed: true };
                     this.consume(']');
-                } else if (next.text === '.') {
+                }
+                else if (next.text === '.') {
                     primary = { type: AST.MemberExpression, object: primary, property: this.identifier(), computed: false };
-                } else {
+                }
+                else {
                     this.throwError('IMPOSSIBLE');
                 }
             }
@@ -14896,23 +15176,27 @@
                         property.computed = false;
                         this.consume(':');
                         property.value = this.expression();
-                    } else if (this.peek().identifier) {
+                    }
+                    else if (this.peek().identifier) {
                         property.key = this.identifier();
                         property.computed = false;
                         if (this.peek(':')) {
                             this.consume(':');
                             property.value = this.expression();
-                        } else {
+                        }
+                        else {
                             property.value = property.key;
                         }
-                    } else if (this.peek('[')) {
+                    }
+                    else if (this.peek('[')) {
                         this.consume('[');
                         property.key = this.expression();
                         this.consume(']');
                         property.computed = true;
                         this.consume(':');
                         property.value = this.expression();
-                    } else {
+                    }
+                    else {
                         this.throwError('invalid key', this.peek());
                     }
                     properties.push(property);
@@ -15265,10 +15549,13 @@
             switch (ast.type) {
             case AST.Program:
                 forEach(ast.body, function(expression, pos) {
-                    self.recurse(expression.expression, undefined, undefined, function(expr) { right = expr; });
+                    self.recurse(expression.expression, undefined, undefined, function(expr) {
+                        right = expr; 
+                    });
                     if (pos !== ast.body.length - 1) {
                         self.current().body.push(right, ';');
-                    } else {
+                    }
+                    else {
                         self.return_(right);
                     }
                 });
@@ -15279,19 +15566,27 @@
                 recursionFn(intoId || expression);
                 break;
             case AST.UnaryExpression:
-                this.recurse(ast.argument, undefined, undefined, function(expr) { right = expr; });
+                this.recurse(ast.argument, undefined, undefined, function(expr) {
+                    right = expr; 
+                });
                 expression = ast.operator + '(' + this.ifDefined(right, 0) + ')';
                 this.assign(intoId, expression);
                 recursionFn(expression);
                 break;
             case AST.BinaryExpression:
-                this.recurse(ast.left, undefined, undefined, function(expr) { left = expr; });
-                this.recurse(ast.right, undefined, undefined, function(expr) { right = expr; });
+                this.recurse(ast.left, undefined, undefined, function(expr) {
+                    left = expr; 
+                });
+                this.recurse(ast.right, undefined, undefined, function(expr) {
+                    right = expr; 
+                });
                 if (ast.operator === '+') {
                     expression = this.plus(left, right);
-                } else if (ast.operator === '-') {
+                }
+                else if (ast.operator === '-') {
                     expression = this.ifDefined(left, 0) + ast.operator + this.ifDefined(right, 0);
-                } else {
+                }
+                else {
                     expression = '(' + left + ')' + ast.operator + '(' + right + ')';
                 }
                 this.assign(intoId, expression);
@@ -15348,7 +15643,8 @@
                                 nameId.computed = true;
                                 nameId.name = right;
                             }
-                        } else {
+                        }
+                        else {
                             if (create && create !== 1) {
                                 self.if_(self.isNull(self.nonComputedMember(left, ast.property.name)), self.lazyAssign(self.nonComputedMember(left, ast.property.name), '{}'));
                             }
@@ -15378,7 +15674,8 @@
                     expression = right + '(' + args.join(',') + ')';
                     self.assign(intoId, expression);
                     recursionFn(intoId);
-                } else {
+                }
+                else {
                     right = self.nextId();
                     left = {};
                     args = [];
@@ -15391,7 +15688,8 @@
                             });
                             if (left.name) {
                                 expression = self.member(left.context, left.name, left.computed) + '(' + args.join(',') + ')';
-                            } else {
+                            }
+                            else {
                                 expression = right + '(' + args.join(',') + ')';
                             }
                             self.assign(intoId, expression);
@@ -15440,7 +15738,8 @@
                         if (property.computed) {
                             left = self.nextId();
                             self.recurse(property.key, left);
-                        } else {
+                        }
+                        else {
                             left = property.key.type === AST.Identifier ?
                                 property.key.name :
                                 ('' + property.key.value);
@@ -15449,7 +15748,8 @@
                         self.recurse(property.value, right);
                         self.assign(self.member(intoId, left, property.computed), right);
                     });
-                } else {
+                }
+                else {
                     forEach(ast.properties, function(property) {
                         self.recurse(property.value, ast.constant ? undefined : self.nextId(), undefined, function(expr) {
                             args.push(self.escape(
@@ -15515,7 +15815,8 @@
         if_: function(test, alternate, consequent) {
             if (test === true) {
                 alternate();
-            } else {
+            }
+            else {
                 var body = this.current().body;
                 body.push('if(', test, '){');
                 alternate();
@@ -15545,7 +15846,8 @@
             var UNSAFE_CHARACTERS = /[^$_a-zA-Z0-9]/g;
             if (SAFE_IDENTIFIER.test(right)) {
                 return left + '.' + right;
-            } else {
+            }
+            else {
                 return left  + '["' + right.replace(UNSAFE_CHARACTERS, this.stringEscapeFn) + '"]';
             }
         },
@@ -15754,7 +16056,8 @@
                             computed: true,
                             value: self.recurse(property.value)
                         });
-                    } else {
+                    }
+                    else {
                         args.push({key: property.key.type === AST.Identifier ?
                             property.key.name :
                             ('' + property.key.value),
@@ -15768,7 +16071,8 @@
                     for (var i = 0; i < args.length; ++i) {
                         if (args[i].computed) {
                             value[args[i].key(scope, locals, assign, inputs)] = args[i].value(scope, locals, assign, inputs);
-                        } else {
+                        }
+                        else {
                             value[args[i].key] = args[i].value(scope, locals, assign, inputs);
                         }
                     }
@@ -15794,7 +16098,8 @@
                 var arg = argument(scope, locals, assign, inputs);
                 if (isDefined(arg)) {
                     arg = +arg;
-                } else {
+                }
+                else {
                     arg = 0;
                 }
                 return context ? {value: arg} : arg;
@@ -15805,7 +16110,8 @@
                 var arg = argument(scope, locals, assign, inputs);
                 if (isDefined(arg)) {
                     arg = -arg;
-                } else {
+                }
+                else {
                     arg = -0;
                 }
                 return context ? {value: arg} : arg;
@@ -15920,7 +16226,9 @@
             };
         },
         value: function(value, context) {
-            return function() { return context ? {context: undefined, name: undefined, value: value} : value; };
+            return function() {
+                return context ? {context: undefined, name: undefined, value: value} : value; 
+            };
         },
         identifier: function(name, context, create) {
             return function(scope, locals, assign, inputs) {
@@ -15931,7 +16239,8 @@
                 var value = base ? base[name] : undefined;
                 if (context) {
                     return {context: base, name: name, value: value};
-                } else {
+                }
+                else {
                     return value;
                 }
             };
@@ -15953,7 +16262,8 @@
                 }
                 if (context) {
                     return {context: lhs, name: rhs, value: value};
-                } else {
+                }
+                else {
                     return value;
                 }
             };
@@ -15969,7 +16279,8 @@
                 var value = lhs != null ? lhs[right] : undefined;
                 if (context) {
                     return {context: lhs, name: right, value: value};
-                } else {
+                }
+                else {
                     return value;
                 }
             };
@@ -16143,10 +16454,12 @@
                         parsedExpression = parser.parse(exp);
                         if (parsedExpression.constant) {
                             parsedExpression.$$watchDelegate = constantWatchDelegate;
-                        } else if (oneTime) {
+                        }
+                        else if (oneTime) {
                             parsedExpression.$$watchDelegate = parsedExpression.literal ?
                                 oneTimeLiteralWatchDelegate : oneTimeWatchDelegate;
-                        } else if (parsedExpression.inputs) {
+                        }
+                        else if (parsedExpression.inputs) {
                             parsedExpression.$$watchDelegate = inputsWatchDelegate;
                         }
                         cache[cacheKey] = parsedExpression;
@@ -16234,7 +16547,8 @@
                 var unwatch, lastValue;
                 if (parsedExpression.inputs) {
                     unwatch = inputsWatchDelegate(scope, oneTimeListener, objectEquality, parsedExpression, prettyPrintExpression);
-                } else {
+                }
+                else {
                     unwatch = scope.$watch(oneTimeWatch, oneTimeListener, objectEquality);
                 }
                 return unwatch;
@@ -16318,7 +16632,8 @@
           parsedExpression.$$watchDelegate !== inputsWatchDelegate) {
                     fn.$$watchDelegate = parsedExpression.$$watchDelegate;
                     fn.inputs = parsedExpression.inputs;
-                } else if (!interceptorFn.$stateful) {
+                }
+                else if (!interceptorFn.$stateful) {
                     // If there is an interceptor, but no watchDelegate then treat the interceptor like
                     // we treat filters - it is assumed to be a pure function unless flagged with $stateful
                     fn.$$watchDelegate = inputsWatchDelegate;
@@ -16579,7 +16894,8 @@
             if (isDefined(value)) {
                 errorOnUnhandledRejections = value;
                 return this;
-            } else {
+            }
+            else {
                 return errorOnUnhandledRejections;
             }
         };
@@ -16598,7 +16914,8 @@
             if (isDefined(value)) {
                 errorOnUnhandledRejections = value;
                 return this;
-            } else {
+            }
+            else {
                 return errorOnUnhandledRejections;
             }
         };
@@ -16636,9 +16953,15 @@
         function Deferred() {
             var promise = this.promise = new Promise();
             //Non prototype methods necessary to support unbound execution :/
-            this.resolve = function(val) { resolvePromise(promise, val); };
-            this.reject = function(reason) { rejectPromise(promise, reason); };
-            this.notify = function(progress) { notifyPromise(promise, progress); };
+            this.resolve = function(val) {
+                resolvePromise(promise, val); 
+            };
+            this.reject = function(reason) {
+                rejectPromise(promise, reason); 
+            };
+            this.notify = function(progress) {
+                notifyPromise(promise, progress); 
+            };
         }
 
 
@@ -16687,16 +17010,20 @@
                     try {
                         if (isFunction(fn)) {
                             resolvePromise(promise, fn(state.value));
-                        } else if (state.status === 1) {
+                        }
+                        else if (state.status === 1) {
                             resolvePromise(promise, state.value);
-                        } else {
+                        }
+                        else {
                             rejectPromise(promise, state.value);
                         }
-                    } catch (e) {
+                    }
+                    catch (e) {
                         rejectPromise(promise, e);
                     }
                 }
-            } finally {
+            }
+            finally {
                 --queueSize;
                 if (errorOnUnhandledRejections && queueSize === 0) {
                     nextTick(processChecks);
@@ -16713,7 +17040,8 @@
                     var errorMessage = 'Possibly unhandled rejection: ' + toDebugString(toCheck.value);
                     if (toCheck.value instanceof Error) {
                         exceptionHandler(toCheck.value, errorMessage);
-                    } else {
+                    }
+                    else {
                         exceptionHandler(errorMessage);
                     }
                 }
@@ -16730,7 +17058,9 @@
             if (state.processScheduled || !state.pending) return;
             state.processScheduled = true;
             ++queueSize;
-            nextTick(function() { processQueue(state); });
+            nextTick(function() {
+                processQueue(state); 
+            });
         }
 
         function resolvePromise(promise, val) {
@@ -16740,7 +17070,8 @@
                     'qcycle',
                     'Expected promise to be resolved with value other than itself \'{0}\'',
                     val));
-            } else {
+            }
+            else {
                 $$resolve(promise, val);
             }
 
@@ -16754,12 +17085,14 @@
                 if (isFunction(then)) {
                     promise.$$state.status = -1;
                     then.call(val, doResolve, doReject, doNotify);
-                } else {
+                }
+                else {
                     promise.$$state.value = val;
                     promise.$$state.status = 1;
                     scheduleProcessQueue(promise.$$state);
                 }
-            } catch (e) {
+            }
+            catch (e) {
                 doReject(e);
             }
 
@@ -16800,7 +17133,8 @@
                         callback = callbacks[i][3];
                         try {
                             notifyPromise(result, isFunction(callback) ? callback(progress) : progress);
-                        } catch (e) {
+                        }
+                        catch (e) {
                             exceptionHandler(e);
                         }
                     }
@@ -16854,14 +17188,16 @@
             var callbackOutput = null;
             try {
                 if (isFunction(callback)) callbackOutput = callback();
-            } catch (e) {
+            }
+            catch (e) {
                 return reject(e);
             }
             if (isPromiseLike(callbackOutput)) {
                 return callbackOutput.then(function() {
                     return resolver(value);
                 }, reject);
-            } else {
+            }
+            else {
                 return resolver(value);
             }
         }
@@ -17280,7 +17616,8 @@
                         if (isolate) {
                             child = new Scope();
                             child.$root = this.$root;
-                        } else {
+                        }
+                        else {
                             // Only create a child scope class if somebody asks for one,
                             // but cache it to allow the VM to optimize lookups.
                             if (!this.$$ChildScope) {
@@ -17293,7 +17630,8 @@
                         if (parent.$$childHead) {
                             parent.$$childTail.$$nextSibling = child;
                             parent.$$childTail = child;
-                        } else {
+                        }
+                        else {
                             parent.$$childHead = parent.$$childTail = child;
                         }
 
@@ -17540,7 +17878,8 @@
                             if (firstRun) {
                                 firstRun = false;
                                 listener(newValues, newValues, self);
-                            } else {
+                            }
+                            else {
                                 listener(newValues, oldValues, self);
                             }
                         }
@@ -17640,7 +17979,8 @@
                                     oldValue = newValue;
                                     changeDetected++;
                                 }
-                            } else if (isArrayLike(newValue)) {
+                            }
+                            else if (isArrayLike(newValue)) {
                                 if (oldValue !== internalArray) {
                                     // we are transitioning from something which was not an array into array.
                                     oldValue = internalArray;
@@ -17667,7 +18007,8 @@
                                         oldValue[i] = newItem;
                                     }
                                 }
-                            } else {
+                            }
+                            else {
                                 if (oldValue !== internalObject) {
                                     // we are transitioning from something which was not an object into object.
                                     oldValue = internalObject = {};
@@ -17689,7 +18030,8 @@
                                                 changeDetected++;
                                                 oldValue[key] = newItem;
                                             }
-                                        } else {
+                                        }
+                                        else {
                                             oldLength++;
                                             oldValue[key] = newItem;
                                             changeDetected++;
@@ -17714,7 +18056,8 @@
                             if (initRun) {
                                 initRun = false;
                                 listener(newValue, newValue, self);
-                            } else {
+                            }
+                            else {
                                 listener(newValue, veryOldValue, self);
                             }
 
@@ -17723,12 +18066,14 @@
                                 if (!isObject(newValue)) {
                                     //primitive
                                     veryOldValue = newValue;
-                                } else if (isArrayLike(newValue)) {
+                                }
+                                else if (isArrayLike(newValue)) {
                                     veryOldValue = new Array(newValue.length);
                                     for (var i = 0; i < newValue.length; i++) {
                                         veryOldValue[i] = newValue[i];
                                     }
-                                } else { // if object
+                                }
+                                else { // if object
                                     veryOldValue = {};
                                     for (var key in newValue) {
                                         if (hasOwnProperty.call(newValue, key)) {
@@ -17825,7 +18170,8 @@
                                 try {
                                     asyncTask = asyncQueue[asyncQueuePosition];
                                     asyncTask.scope.$eval(asyncTask.expression, asyncTask.locals);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                                 lastDirtyWatch = null;
@@ -17862,14 +18208,16 @@
                                                             oldVal: last
                                                         });
                                                     }
-                                                } else if (watch === lastDirtyWatch) {
+                                                }
+                                                else if (watch === lastDirtyWatch) {
                                                     // If the most recently dirty watcher is now clean, short circuit since the remaining watchers
                                                     // have already been tested.
                                                     dirty = false;
                                                     break traverseScopesLoop;
                                                 }
                                             }
-                                        } catch (e) {
+                                        }
+                                        catch (e) {
                                             $exceptionHandler(e);
                                         }
                                     }
@@ -17904,7 +18252,8 @@
                         while (postDigestQueuePosition < postDigestQueue.length) {
                             try {
                                 postDigestQueue[postDigestQueuePosition++]();
-                            } catch (e) {
+                            }
+                            catch (e) {
                                 $exceptionHandler(e);
                             }
                         }
@@ -17977,7 +18326,9 @@
 
                         // Disable listeners, watchers and apply/digest methods
                         this.$destroy = this.$digest = this.$apply = this.$evalAsync = this.$applyAsync = noop;
-                        this.$on = this.$watch = this.$watchGroup = function() { return noop; };
+                        this.$on = this.$watch = this.$watchGroup = function() {
+                            return noop; 
+                        };
                         this.$$listeners = {};
 
                         // Disconnect the next sibling to prevent `cleanUpScope` destroying those too
@@ -18115,15 +18466,19 @@
                             beginPhase('$apply');
                             try {
                                 return this.$eval(expr);
-                            } finally {
+                            }
+                            finally {
                                 clearPhase();
                             }
-                        } catch (e) {
+                        }
+                        catch (e) {
                             $exceptionHandler(e);
-                        } finally {
+                        }
+                        finally {
                             try {
                                 $rootScope.$digest();
-                            } catch (e) {
+                            }
+                            catch (e) {
                                 $exceptionHandler(e);
                                 // eslint-disable-next-line no-unsafe-finally
                                 throw e;
@@ -18244,7 +18599,9 @@
                             event = {
                                 name: name,
                                 targetScope: scope,
-                                stopPropagation: function() {stopPropagation = true;},
+                                stopPropagation: function() {
+                                    stopPropagation = true;
+                                },
                                 preventDefault: function() {
                                     event.defaultPrevented = true;
                                 },
@@ -18268,7 +18625,8 @@
                                 try {
                                     //allow all listeners attached to the current scope to run
                                     namedListeners[i].apply(null, listenerArgs);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             }
@@ -18341,7 +18699,8 @@
 
                                 try {
                                     listeners[i].apply(null, listenerArgs);
-                                } catch (e) {
+                                }
+                                catch (e) {
                                     $exceptionHandler(e);
                                 }
                             }
@@ -18413,7 +18772,8 @@
                     while (applyAsyncQueue.length) {
                         try {
                             applyAsyncQueue.shift()();
-                        } catch (e) {
+                        }
+                        catch (e) {
                             $exceptionHandler(e);
                         }
                     }
@@ -18553,7 +18913,8 @@
     function adjustMatcher(matcher) {
         if (matcher === 'self') {
             return matcher;
-        } else if (isString(matcher)) {
+        }
+        else if (isString(matcher)) {
             // Strings match exactly except for 2 wildcards - '*' and '**'.
             // '*' matches any character except those from the set ':/.?&'.
             // '**' matches any character (like .* in a RegExp).
@@ -18566,12 +18927,14 @@
                 replace(/\\\*\\\*/g, '.*').
                 replace(/\\\*/g, '[^:/.?&;]*');
             return new RegExp('^' + matcher + '$');
-        } else if (isRegExp(matcher)) {
+        }
+        else if (isRegExp(matcher)) {
             // The only other type of matcher allowed is a Regexp.
             // Match entire URL / disallow partial matches.
             // Flags are reset (i.e. no global, ignoreCase or multiline)
             return new RegExp('^' + matcher.source + '$');
-        } else {
+        }
+        else {
             throw $sceMinErr('imatcher',
                 'Matchers may only be "self", string patterns or RegExp objects');
         }
@@ -18744,7 +19107,8 @@
             function matchUrl(matcher, parsedUrl) {
                 if (matcher === 'self') {
                     return urlIsSameOrigin(parsedUrl);
-                } else {
+                }
+                else {
                     // definitely a regex.  See adjustMatchers()
                     return !!matcher.exec(parsedUrl.href);
                 }
@@ -18857,7 +19221,8 @@
             function valueOf(maybeTrusted) {
                 if (maybeTrusted instanceof trustedValueHolderBase) {
                     return maybeTrusted.$$unwrapTrustedValue();
-                } else {
+                }
+                else {
                     return maybeTrusted;
                 }
             }
@@ -18896,12 +19261,14 @@
                 if (type === SCE_CONTEXTS.RESOURCE_URL) {
                     if (isResourceUrlAllowedByPolicy(maybeTrusted)) {
                         return maybeTrusted;
-                    } else {
+                    }
+                    else {
                         throw $sceMinErr('insecurl',
                             'Blocked loading resource from url not allowed by $sceDelegate policy.  URL: {0}',
                             maybeTrusted.toString());
                     }
-                } else if (type === SCE_CONTEXTS.HTML) {
+                }
+                else if (type === SCE_CONTEXTS.HTML) {
                     return htmlSanitizer(maybeTrusted);
                 }
                 throw $sceMinErr('unsafe', 'Attempting to use an unsafe value in a safe context.');
@@ -19295,7 +19662,9 @@
             sce.valueOf = $sceDelegate.valueOf;
 
             if (!enabled) {
-                sce.trustAs = sce.getTrusted = function(type, value) { return value; };
+                sce.trustAs = sce.getTrusted = function(type, value) {
+                    return value; 
+                };
                 sce.valueOf = identity;
             }
 
@@ -19322,7 +19691,8 @@
                 var parsed = $parse(expr);
                 if (parsed.literal && parsed.constant) {
                     return parsed;
-                } else {
+                }
+                else {
                     return $parse(expr, function(value) {
                         return sce.getTrusted(type, value);
                     });
@@ -19757,7 +20127,8 @@
                         transformResponse = transformResponse.filter(function(transformer) {
                             return transformer !== defaultHttpResponseTransform;
                         });
-                    } else if (transformResponse === defaultHttpResponseTransform) {
+                    }
+                    else if (transformResponse === defaultHttpResponseTransform) {
                         transformResponse = null;
                     }
 
@@ -19831,7 +20202,8 @@
                                     if (matcher.test(bindingName)) {
                                         matches.push(binding);
                                     }
-                                } else {
+                                }
+                                else {
                                     if (bindingName.indexOf(expression) !== -1) {
                                         matches.push(binding);
                                     }
@@ -19962,10 +20334,12 @@
                     timeoutId = $browser.defer(function() {
                         try {
                             deferred.resolve(fn.apply(null, args));
-                        } catch (e) {
+                        }
+                        catch (e) {
                             deferred.reject(e);
                             $exceptionHandler(e);
-                        } finally {
+                        }
+                        finally {
                             delete deferreds[promise.$$timeoutId];
                         }
 
@@ -20166,7 +20540,8 @@
         function safeGetCookie(rawDocument) {
             try {
                 return rawDocument.cookie || '';
-            } catch (e) {
+            }
+            catch (e) {
                 return '';
             }
         }
@@ -20174,7 +20549,8 @@
         function safeDecodeURIComponent(str) {
             try {
                 return decodeURIComponent(str);
-            } catch (e) {
+            }
+            catch (e) {
                 return str;
             }
         }
@@ -20346,7 +20722,8 @@
                     filters[key] = register(key, filter);
                 });
                 return filters;
-            } else {
+            }
+            else {
                 return $provide.factory(name + suffix, factory);
             }
         }
@@ -20521,7 +20898,8 @@
             if (!isArrayLike(array)) {
                 if (array == null) {
                     return array;
-                } else {
+                }
+                else {
                     throw minErr('filter')('notarray', 'Expected array but received: {0}', array);
                 }
             }
@@ -20559,7 +20937,8 @@
 
         if (comparator === true) {
             comparator = equals;
-        } else if (!isFunction(comparator)) {
+        }
+        else if (!isFunction(comparator)) {
             comparator = function(actual, expected) {
                 if (isUndefined(actual)) {
                     // No substring matching against `undefined`
@@ -20596,7 +20975,8 @@
 
         if ((expectedType === 'string') && (expected.charAt(0) === '!')) {
             return !deepCompare(actual, expected.substring(1), comparator, anyPropertyKey, matchAgainstAnyProp);
-        } else if (isArray(actual)) {
+        }
+        else if (isArray(actual)) {
             // In case `actual` is an array, consider it a match
             // if ANY of it's items matches `expected`
             return actual.some(function(item) {
@@ -20614,7 +20994,8 @@
                     }
                 }
                 return dontMatchWholeObject ? false : deepCompare(actual, expected, comparator, anyPropertyKey, false);
-            } else if (expectedType === 'object') {
+            }
+            else if (expectedType === 'object') {
                 for (key in expected) {
                     var expectedVal = expected[key];
                     if (isFunction(expectedVal) || isUndefined(expectedVal)) {
@@ -20628,7 +21009,8 @@
                     }
                 }
                 return true;
-            } else {
+            }
+            else {
                 return comparator(actual, expected);
             }
         case 'function':
@@ -20814,7 +21196,8 @@
             if (numberOfIntegerDigits < 0) numberOfIntegerDigits = i;
             numberOfIntegerDigits += +numStr.slice(i + 1);
             numStr = numStr.substring(0, i);
-        } else if (numberOfIntegerDigits < 0) {
+        }
+        else if (numberOfIntegerDigits < 0) {
             // There was no decimal point or exponent so it is an integer.
             numberOfIntegerDigits = numStr.length;
         }
@@ -20826,7 +21209,8 @@
             // The digits are all zero.
             digits = [0];
             numberOfIntegerDigits = 1;
-        } else {
+        }
+        else {
             // Count the number of trailing zeros
             zeros--;
             while (numStr.charAt(zeros) === ZERO_CHAR) zeros--;
@@ -20873,7 +21257,8 @@
             for (var j = roundAt; j < digits.length; j++) {
                 digits[j] = 0;
             }
-        } else {
+        }
+        else {
             // We rounded to zero so reset the parsedNumber
             fractionLen = Math.max(0, fractionLen);
             parsedNumber.i = 1;
@@ -20890,7 +21275,8 @@
                 }
                 digits.unshift(1);
                 parsedNumber.i++;
-            } else {
+            }
+            else {
                 digits[roundAt - 1]++;
             }
         }
@@ -20941,7 +21327,8 @@
 
         if (isInfinity) {
             formattedText = '\u221e';
-        } else {
+        }
+        else {
             parsedNumber = parse(numStr);
 
             roundNumber(parsedNumber, fractionSize, pattern.minFrac, pattern.maxFrac);
@@ -20950,7 +21337,9 @@
             var integerLen = parsedNumber.i;
             var exponent = parsedNumber.e;
             var decimals = [];
-            isZero = digits.reduce(function(isZero, d) { return isZero && !d; }, true);
+            isZero = digits.reduce(function(isZero, d) {
+                return isZero && !d; 
+            }, true);
 
             // pad zeros for small numbers
             while (integerLen < 0) {
@@ -20961,7 +21350,8 @@
             // extract decimals digits
             if (integerLen > 0) {
                 decimals = digits.splice(integerLen, digits.length);
-            } else {
+            }
+            else {
                 decimals = digits;
                 digits = [0];
             }
@@ -20990,7 +21380,8 @@
         }
         if (number < 0 && !isZero) {
             return pattern.negPre + formattedText + pattern.negSuf;
-        } else {
+        }
+        else {
             return pattern.posPre + formattedText + pattern.posSuf;
         }
     }
@@ -21000,7 +21391,8 @@
         if (num < 0 || (negWrap && num <= 0)) {
             if (negWrap) {
                 num = -num + 1;
-            } else {
+            }
+            else {
                 num = -num;
                 neg = '-';
             }
@@ -21270,7 +21662,8 @@
                 if (match) {
                     parts = concat(parts, match, 1);
                     format = parts.pop();
-                } else {
+                }
+                else {
                     parts.push(format);
                     format = null;
                 }
@@ -21457,7 +21850,8 @@
         return function(input, limit, begin) {
             if (Math.abs(Number(limit)) === Infinity) {
                 limit = Number(limit);
-            } else {
+            }
+            else {
                 limit = toInt(limit);
             }
             if (isNumberNaN(limit)) return input;
@@ -21470,10 +21864,12 @@
 
             if (limit >= 0) {
                 return sliceFn(input, begin, begin + limit);
-            } else {
+            }
+            else {
                 if (begin === 0) {
                     return sliceFn(input, limit, input.length);
-                } else {
+                }
+                else {
                     return sliceFn(input, Math.max(0, begin + limit), begin);
                 }
             }
@@ -22045,8 +22441,12 @@
                 throw minErr('orderBy')('notarray', 'Expected array but received: {0}', array);
             }
 
-            if (!isArray(sortPredicate)) { sortPredicate = [sortPredicate]; }
-            if (sortPredicate.length === 0) { sortPredicate = ['+']; }
+            if (!isArray(sortPredicate)) {
+                sortPredicate = [sortPredicate]; 
+            }
+            if (sortPredicate.length === 0) {
+                sortPredicate = ['+']; 
+            }
 
             var predicates = processPredicates(sortPredicate);
 
@@ -22060,7 +22460,9 @@
             // See https://en.wikipedia.org/wiki/Schwartzian_transform
             var compareValues = Array.prototype.map.call(array, getComparisonObject);
             compareValues.sort(doComparison);
-            array = compareValues.map(function(item) { return item.value; });
+            array = compareValues.map(function(item) {
+                return item.value; 
+            });
 
             return array;
 
@@ -22095,7 +22497,8 @@
 
                 if (isFunction(predicate)) {
                     get = predicate;
-                } else if (isString(predicate)) {
+                }
+                else if (isString(predicate)) {
                     if ((predicate.charAt(0) === '+' || predicate.charAt(0) === '-')) {
                         descending = predicate.charAt(0) === '-' ? -1 : 1;
                         predicate = predicate.substring(1);
@@ -22104,7 +22507,9 @@
                         get = $parse(predicate);
                         if (get.constant) {
                             var key = get();
-                            get = function(value) { return value[key]; };
+                            get = function(value) {
+                                return value[key]; 
+                            };
                         }
                     }
                 }
@@ -22143,7 +22548,8 @@
             if (value === null) {
                 type = 'string';
                 value = 'null';
-            } else if (type === 'object') {
+            }
+            else if (type === 'object') {
                 value = objectValue(value);
             }
             return {value: value, type: type, index: index};
@@ -22162,7 +22568,8 @@
                     // Compare strings case-insensitively
                     value1 = value1.toLowerCase();
                     value2 = value2.toLowerCase();
-                } else if (type1 === 'object') {
+                }
+                else if (type1 === 'object') {
                     // For basic objects, use the position of the object
                     // in the collection instead of the value
                     if (isObject(value1)) value1 = v1.index;
@@ -22172,7 +22579,8 @@
                 if (value1 !== value2) {
                     result = value1 < value2 ? -1 : 1;
                 }
-            } else {
+            }
+            else {
                 result = type1 < type2 ? -1 : 1;
             }
 
@@ -22954,7 +23362,8 @@
             var list = object[property];
             if (!list) {
                 object[property] = [controller];
-            } else {
+            }
+            else {
                 var index = list.indexOf(controller);
                 if (index === -1) {
                     list.push(controller);
@@ -23234,17 +23643,20 @@
         clazz.prototype.$setValidity = function(validationErrorKey, state, controller) {
             if (isUndefined(state)) {
                 createAndSet(this, '$pending', validationErrorKey, controller);
-            } else {
+            }
+            else {
                 unsetAndCleanup(this, '$pending', validationErrorKey, controller);
             }
             if (!isBoolean(state)) {
                 unset(this.$error, validationErrorKey, controller);
                 unset(this.$$success, validationErrorKey, controller);
-            } else {
+            }
+            else {
                 if (state) {
                     unset(this.$error, validationErrorKey, controller);
                     set(this.$$success, validationErrorKey, controller);
-                } else {
+                }
+                else {
                     set(this.$error, validationErrorKey, controller);
                     unset(this.$$success, validationErrorKey, controller);
                 }
@@ -23253,7 +23665,8 @@
                 cachedToggleClass(this, PENDING_CLASS, true);
                 this.$valid = this.$invalid = undefined;
                 toggleValidationCss(this, '', null);
-            } else {
+            }
+            else {
                 cachedToggleClass(this, PENDING_CLASS, false);
                 this.$valid = isObjectEmpty(this.$error);
                 this.$invalid = !this.$valid;
@@ -23267,11 +23680,14 @@
             var combinedState;
             if (this.$pending && this.$pending[validationErrorKey]) {
                 combinedState = undefined;
-            } else if (this.$error[validationErrorKey]) {
+            }
+            else if (this.$error[validationErrorKey]) {
                 combinedState = false;
-            } else if (this.$$success[validationErrorKey]) {
+            }
+            else if (this.$$success[validationErrorKey]) {
                 combinedState = true;
-            } else {
+            }
+            else {
                 combinedState = null;
             }
 
@@ -23299,7 +23715,8 @@
             if (switchValue && !ctrl.$$classCache[className]) {
                 ctrl.$$animate.addClass(ctrl.$$element, className);
                 ctrl.$$classCache[className] = true;
-            } else if (!switchValue && ctrl.$$classCache[className]) {
+            }
+            else if (!switchValue && ctrl.$$classCache[className]) {
                 ctrl.$$animate.removeClass(ctrl.$$element, className);
                 ctrl.$$classCache[className] = false;
             }
@@ -24604,7 +25021,8 @@
         // input event on backspace, delete or cut
         if ($sniffer.hasEvent('input')) {
             element.on('input', listener);
-        } else {
+        }
+        else {
             var deferListener = function(ev, input, origValue) {
                 if (!timeout) {
                     timeout = $browser.defer(function() {
@@ -24730,7 +25148,8 @@
                             ss: date.getSeconds(),
                             sss: date.getMilliseconds() / 1000
                         };
-                    } else {
+                    }
+                    else {
                         map = { yyyy: 1970, MM: 1, dd: 1, HH: 0, mm: 0, ss: 0, sss: 0 };
                     }
 
@@ -24780,7 +25199,8 @@
                         previousDate = convertTimezoneToLocal(previousDate, timezone, true);
                     }
                     return $filter('date')(value, format, timezone);
-                } else {
+                }
+                else {
                     previousDate = null;
                     return '';
                 }
@@ -24990,7 +25410,9 @@
         if (hasMinAttr) {
             ctrl.$validators.min = supportsRange ?
                 // Since all browsers set the input to a valid value, we don't need to check validity
-    function noopMinValidator() { return true; } :
+    function noopMinValidator() {
+        return true; 
+    } :
                 // non-support browsers validate the min val
                 function minValidator(modelValue, viewValue) {
                     return ctrl.$isEmpty(viewValue) || isUndefined(minVal) || viewValue >= minVal;
@@ -25002,7 +25424,9 @@
         if (hasMaxAttr) {
             ctrl.$validators.max = supportsRange ?
                 // Since all browsers set the input to a valid value, we don't need to check validity
-    function noopMaxValidator() { return true; } :
+    function noopMaxValidator() {
+        return true; 
+    } :
                 // non-support browsers validate the max val
                 function maxValidator(modelValue, viewValue) {
                     return ctrl.$isEmpty(viewValue) || isUndefined(maxVal) || viewValue <= maxVal;
@@ -25051,7 +25475,8 @@
                     element.val(elVal);
                 }
                 ctrl.$setViewValue(elVal);
-            } else {
+            }
+            else {
                 // TODO(matsko): implement validateLater to reduce number of validations
                 ctrl.$validate();
             }
@@ -25073,7 +25498,8 @@
                     elVal = maxVal < minVal ? minVal : maxVal;
                 }
                 ctrl.$setViewValue(elVal);
-            } else {
+            }
+            else {
                 // TODO(matsko): implement validateLater to reduce number of validations
                 ctrl.$validate();
             }
@@ -25089,7 +25515,8 @@
             // Some browsers don't adjust the input value correctly, but set the stepMismatch error
             if (supportsRange && ctrl.$viewValue !== element.val()) {
                 ctrl.$setViewValue(element.val());
-            } else {
+            }
+            else {
                 // TODO(matsko): implement validateLater to reduce number of validations
                 ctrl.$validate();
             }
@@ -25482,7 +25909,8 @@
                         var value = scope.$eval(attr.ngValue);
                         updateElementValue(elm, attr, value);
                     };
-                } else {
+                }
+                else {
                     return function ngValueLink(scope, elm, attr) {
                         scope.$watch(attr.ngValue, function valueWatchAction(value) {
                             updateElementValue(elm, attr, value);
@@ -25867,7 +26295,8 @@
                         // `ngClass[OneTime]WatchAction()` will update the classes.
                         if (newModulo === selector) {
                             addClasses(oldClassString);
-                        } else {
+                        }
+                        else {
                             removeClasses(oldClassString);
                         }
 
@@ -25921,9 +26350,12 @@
 
             if (isArray(classValue)) {
                 classString = classValue.map(toClassString).join(' ');
-            } else if (isObject(classValue)) {
+            }
+            else if (isObject(classValue)) {
                 classString = Object.keys(classValue).
-                    filter(function(key) { return classValue[key]; }).
+                    filter(function(key) {
+                        return classValue[key]; 
+                    }).
                     join(' ');
             }
 
@@ -25935,7 +26367,8 @@
 
             if (isArray(classValue)) {
                 flatValue = classValue.map(toFlatValue);
-            } else if (isObject(classValue)) {
+            }
+            else if (isObject(classValue)) {
                 var hasUndefined = false;
 
                 flatValue = Object.keys(classValue).filter(function(key) {
@@ -26809,7 +27242,8 @@
                                 };
                                 if (forceAsyncEvents[eventName] && $rootScope.$$phase) {
                                     scope.$evalAsync(callback);
-                                } else {
+                                }
+                                else {
                                     scope.$apply(callback);
                                 }
                             });
@@ -27332,7 +27766,8 @@
                                 $animate.enter(clone, $element.parent(), $element);
                             });
                         }
-                    } else {
+                    }
+                    else {
                         if (previousElements) {
                             previousElements.remove();
                             previousElements = null;
@@ -27620,7 +28055,8 @@
                                     }
                                 });
                                 scope.$emit('$includeContentRequested', src);
-                            } else {
+                            }
+                            else {
                                 cleanupLastIncludeContent();
                                 ctrl.template = null;
                             }
@@ -28140,11 +28576,13 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 this.$$ngModelSet = function($scope, newValue) {
                     if (isFunction(this.$$parsedNgModel($scope))) {
                         invokeModelSetter($scope, {$$$p: newValue});
-                    } else {
+                    }
+                    else {
                         this.$$parsedNgModelAssign($scope, newValue);
                     }
                 };
-            } else if (!this.$$parsedNgModel.assign) {
+            }
+            else if (!this.$$parsedNgModel.assign) {
                 throw ngModelMinErr('nonassign', 'Expression \'{0}\' is non-assignable. Element: {1}',
                     this.$$attr.ngModel, startingTag(this.$$element));
             }
@@ -28200,7 +28638,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
             if (this.$isEmpty(value)) {
                 this.$$animate.removeClass(this.$$element, NOT_EMPTY_CLASS);
                 this.$$animate.addClass(this.$$element, EMPTY_CLASS);
-            } else {
+            }
+            else {
                 this.$$animate.removeClass(this.$$element, EMPTY_CLASS);
                 this.$$animate.addClass(this.$$element, NOT_EMPTY_CLASS);
             }
@@ -28440,7 +28879,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 var errorKey = that.$$parserName || 'parse';
                 if (isUndefined(that.$$parserValid)) {
                     setValidity(errorKey, null);
-                } else {
+                }
+                else {
                     if (!that.$$parserValid) {
                         forEach(that.$validators, function(v, name) {
                             setValidity(name, null);
@@ -28491,7 +28931,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 });
                 if (!validatorPromises.length) {
                     validationDone(true);
-                } else {
+                }
+                else {
                     that.$$q.all(validatorPromises).then(function() {
                         validationDone(allValid);
                     }, noop);
@@ -28598,7 +29039,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
             forEach(this.$viewChangeListeners, function(listener) {
                 try {
                     listener();
-                } catch (e) {
+                }
+                catch (e) {
                     // eslint-disable-next-line no-invalid-this
                     this.$$exceptionHandler(e);
                 }
@@ -28667,7 +29109,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
             if (isNumber(debounceDelay[trigger])) {
                 debounceDelay = debounceDelay[trigger];
-            } else if (isNumber(debounceDelay['default'])) {
+            }
+            else if (isNumber(debounceDelay['default'])) {
                 debounceDelay = debounceDelay['default'];
             }
 
@@ -28677,9 +29120,11 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 this.$$pendingDebounce = this.$$timeout(function() {
                     that.$commitViewValue();
                 }, debounceDelay);
-            } else if (this.$$scope.$root.$$phase) {
+            }
+            else if (this.$$scope.$root.$$phase) {
                 this.$commitViewValue();
-            } else {
+            }
+            else {
                 this.$$scope.$apply(function() {
                     that.$commitViewValue();
                 });
@@ -29028,7 +29473,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
                             if ($rootScope.$$phase) {
                                 scope.$evalAsync(setTouched);
-                            } else {
+                            }
+                            else {
                                 scope.$apply(setTouched);
                             }
                         });
@@ -29083,14 +29529,16 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 if (option === '$inherit') {
                     if (key === '*') {
                         inheritAll = true;
-                    } else {
+                    }
+                    else {
                         options[key] = this.$$options[key];
                         // `updateOn` is special so we must also inherit the `updateOnDefault` option
                         if (key === 'updateOn') {
                             options.updateOnDefault = this.$$options.updateOnDefault;
                         }
                     }
-                } else {
+                }
+                else {
                     if (key === 'updateOn') {
                         // If the `updateOn` property contains the `default` event then we have to remove
                         // it from the event list and set the `updateOnDefault` flag.
@@ -29717,8 +30165,12 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
             // if we have a trackFn then use that (passing scope and locals)
             // otherwise just hash the given viewValue
             var getTrackByValueFn = trackBy ?
-                function(value, locals) { return trackByFn(scope, locals); } :
-                function getHashOfValue(value) { return hashKey(value); };
+                function(value, locals) {
+                    return trackByFn(scope, locals); 
+                } :
+                function getHashOfValue(value) {
+                    return hashKey(value); 
+                };
             var getTrackByValue = function(value, key) {
                 return getTrackByValueFn(value, getLocals(value, key));
             };
@@ -29752,7 +30204,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
                 if (!keyName && isArrayLike(optionValues)) {
                     optionValuesKeys = optionValues;
-                } else {
+                }
+                else {
                     // if object, extract keys, in enumeration order, unsorted
                     optionValuesKeys = [];
                     for (var itemKey in optionValues) {
@@ -29906,13 +30359,16 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                         }
 
                         option.element.setAttribute('selected', 'selected');
-                    } else {
+                    }
+                    else {
 
                         if (providedEmptyOption) {
                             selectCtrl.selectEmptyOption();
-                        } else if (selectCtrl.unknownOption.parent().length) {
+                        }
+                        else if (selectCtrl.unknownOption.parent().length) {
                             selectCtrl.updateUnknownOption(value);
-                        } else {
+                        }
+                        else {
                             selectCtrl.renderUnknownOption(value);
                         }
                     }
@@ -29935,12 +30391,17 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                 // FIXME: When a user selects an option, this watch will fire needlessly
                 if (ngOptions.trackBy) {
                     scope.$watch(
-                        function() { return ngOptions.getTrackByValue(ngModelCtrl.$viewValue); },
-                        function() { ngModelCtrl.$render(); }
+                        function() {
+                            return ngOptions.getTrackByValue(ngModelCtrl.$viewValue); 
+                        },
+                        function() {
+                            ngModelCtrl.$render(); 
+                        }
                     );
                 }
 
-            } else {
+            }
+            else {
 
                 selectCtrl.writeValue = function writeNgOptionsMultiple(values) {
                     // Only set `<option>.selected` if necessary, in order to prevent some browsers from
@@ -30017,7 +30478,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                         }
                     };
 
-                } else {
+                }
+                else {
                     // remove the class, which is added automatically because we recompile the element and it
                     // becomes the compilation root
                     selectCtrl.emptyOption.removeClass('ng-scope');
@@ -30080,7 +30542,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                         var option = options.items[i];
                         if (isDefined(option.group)) {
                             jqLiteRemove(option.element.parentNode);
-                        } else {
+                        }
+                        else {
                             jqLiteRemove(option.element);
                         }
                     }
@@ -30119,7 +30582,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
                         addOptionElement(option, groupElement);
 
-                    } else {
+                    }
+                    else {
 
                         // This option is not in a group
                         addOptionElement(option, listFragment);
@@ -30384,7 +30848,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                             }
                             watchRemover = noop;
                             updateElementText();
-                        } else {
+                        }
+                        else {
                             watchRemover = scope.$watch(whenExpFn, updateElementText);
                         }
                         lastCount = count;
@@ -30802,7 +31267,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
                 if (trackByExp) {
                     trackByExpGetter = $parse(trackByExp);
-                } else {
+                }
+                else {
                     trackByIdArrayFn = function(key, value) {
                         return hashKey(value);
                     };
@@ -30858,7 +31324,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                         if (isArrayLike(collection)) {
                             collectionKeys = collection;
                             trackByIdFn = trackByIdExpFn || trackByIdArrayFn;
-                        } else {
+                        }
+                        else {
                             trackByIdFn = trackByIdExpFn || trackByIdObjFn;
                             // if object, extract keys, in enumeration order, unsorted
                             collectionKeys = [];
@@ -30883,7 +31350,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                                 delete lastBlockMap[trackById];
                                 nextBlockMap[trackById] = block;
                                 nextBlockOrder[index] = block;
-                            } else if (nextBlockMap[trackById]) {
+                            }
+                            else if (nextBlockMap[trackById]) {
                                 // if collision detected. restore lastBlockMap and throw an error
                                 forEach(nextBlockOrder, function(block) {
                                     if (block && block.scope) lastBlockMap[block.id] = block;
@@ -30891,7 +31359,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                                 throw ngRepeatMinErr('dupes',
                                     'Duplicates in a repeater are not allowed. Use \'track by\' expression to specify unique keys. Repeater: {0}, Duplicate key: {1}, Duplicate value: {2}',
                                     expression, trackById, value);
-                            } else {
+                            }
+                            else {
                                 // new never before seen block
                                 nextBlockOrder[index] = {id: trackById, scope: undefined, clone: undefined};
                                 nextBlockMap[trackById] = true;
@@ -30936,7 +31405,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                                 }
                                 previousNode = getBlockEnd(block);
                                 updateScope(block.scope, index, valueIdentifier, value, keyIdentifier, key, collectionLength);
-                            } else {
+                            }
+                            else {
                                 // new item which we don't know about
                                 $transclude(function ngRepeatTransclude(clone, scope) {
                                     block.scope = scope;
@@ -31420,7 +31890,9 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
     var ngStyleDirective = ngDirective(function(scope, element, attr) {
         scope.$watch(attr.ngStyle, function ngStyleWatchAction(newStyles, oldStyles) {
             if (oldStyles && (newStyles !== oldStyles)) {
-                forEach(oldStyles, function(val, style) { element.css(style, '');});
+                forEach(oldStyles, function(val, style) {
+                    element.css(style, '');
+                });
             }
             if (newStyles) element.css(newStyles);
         }, true);
@@ -31629,7 +32101,9 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
             var cases = attrs.ngSwitchWhen.split(attrs.ngSwitchWhenSeparator).sort().filter(
                 // Filter duplicate cases
-                function(element, index, array) { return array[index - 1] !== element; }
+                function(element, index, array) {
+                    return array[index - 1] !== element; 
+                }
             );
 
             forEach(cases, function(whenCase) {
@@ -31847,7 +32321,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                     function ngTranscludeCloneAttachFn(clone, transcludedScope) {
                         if (clone.length && notWhitespace(clone)) {
                             $element.append(clone);
-                        } else {
+                        }
+                        else {
                             useFallbackContent();
                             // There is nothing linked against the transcluded scope since no content was available,
                             // so it should be safe to clean up the generated scope.
@@ -32037,13 +32512,16 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                     // Set selected attribute and property on selected option for screen readers
                     var selectedOption = $element[0].options[$element[0].selectedIndex];
                     setOptionAsSelected(jqLite(selectedOption));
-                } else {
+                }
+                else {
                     if (value == null && self.emptyOption) {
                         self.removeUnknownOption();
                         self.selectEmptyOption();
-                    } else if (self.unknownOption.parent().length) {
+                    }
+                    else if (self.unknownOption.parent().length) {
                         self.updateUnknownOption(value);
-                    } else {
+                    }
+                    else {
                         self.renderUnknownOption(value);
                     }
                 }
@@ -32077,7 +32555,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                             self.hasEmptyOption = false;
                             self.emptyOption = undefined;
                         }
-                    } else {
+                    }
+                    else {
                         optionsMap.set(value, count - 1);
                     }
                 }
@@ -32145,7 +32624,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                         }
 
                     });
-                } else if (interpolateValueFn) {
+                }
+                else if (interpolateValueFn) {
                     // The value attribute is interpolated
                     optionAttrs.$observe('value', function valueAttributeObserveAction(newVal) {
                         // This method is overwritten in ngOptions and has side-effects!
@@ -32165,7 +32645,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                             scheduleViewValueUpdate();
                         }
                     });
-                } else if (interpolateTextFn) {
+                }
+                else if (interpolateTextFn) {
                     // The text content is interpolated
                     optionScope.$watch(interpolateTextFn, function interpolateWatchAction(newVal, oldVal) {
                         optionAttrs.$set('value', newVal);
@@ -32179,7 +32660,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                             scheduleViewValueUpdate();
                         }
                     });
-                } else {
+                }
+                else {
                     // The value attribute is static
                     self.addOption(optionAttrs.value, optionElement);
                 }
@@ -32193,7 +32675,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
                     if (newVal === 'true' || newVal && optionElement.prop('selected')) {
                         if (self.multiple) {
                             scheduleViewValueUpdate(true);
-                        } else {
+                        }
+                        else {
                             self.ngModelCtrl.$setViewValue(null);
                             self.ngModelCtrl.$render();
                         }
@@ -32587,10 +33070,12 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
 
                 if (isDefined(attr.ngValue)) {
                     // Will be handled by registerOption
-                } else if (isDefined(attr.value)) {
+                }
+                else if (isDefined(attr.value)) {
                     // If the value attribute is defined, check if it contains an interpolation
                     interpolateValueFn = $interpolate(attr.value, true);
-                } else {
+                }
+                else {
                     // If the value attribute is not defined then we fall back to the
                     // text content of the option element, which may be interpolated
                     interpolateTextFn = $interpolate(element.text(), true);
@@ -33121,7 +33606,11 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
             },
             'id': 'en-us',
             'localeID': 'en_US',
-            'pluralCat': function(n, opt_precision) {  var i = n | 0;  var vf = getVF(n, opt_precision);  if (i == 1 && vf.v == 0) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
+            'pluralCat': function(n, opt_precision) {
+                var i = n | 0;  var vf = getVF(n, opt_precision);  if (i == 1 && vf.v == 0) {
+                    return PLURAL_CATEGORY.ONE;  
+                }  return PLURAL_CATEGORY.OTHER;
+            }
         });
     }]);
 

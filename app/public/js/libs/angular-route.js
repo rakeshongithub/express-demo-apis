@@ -3,11 +3,12 @@
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window, angular) {'use strict';
+(function(window, angular) {
+    'use strict';
 
-/* global shallowCopy: true */
+    /* global shallowCopy: true */
 
-/**
+    /**
  * Creates a shallow copy of an object, an array or a primitive.
  *
  * Assumes that there are no proto properties for objects.
@@ -19,7 +20,8 @@
             for (var i = 0, ii = src.length; i < ii; i++) {
                 dst[i] = src[i];
             }
-        } else if (isObject(src)) {
+        }
+        else if (isObject(src)) {
             dst = dst || {};
 
             for (var key in src) {
@@ -639,7 +641,8 @@
                                 $location.path(interpolate(this.current.$$route.originalPath, newParams));
                                 // interpolate modifies newParams, only query params are left
                                 $location.search(newParams);
-                            } else {
+                            }
+                            else {
                                 throw $routeMinErr('norout', 'Tried updating route when with no current route');
                             }
                         }
@@ -709,7 +712,8 @@
                         lastRoute.params = nextRoute.params;
                         angular.copy(lastRoute.params, $routeParams);
                         $rootScope.$broadcast('$routeUpdate', lastRoute);
-                    } else if (nextRoute || lastRoute) {
+                    }
+                    else if (nextRoute || lastRoute) {
                         forceReload = false;
                         $route.current = nextRoute;
 
@@ -760,7 +764,8 @@
                                 data.path = interpolate(route.redirectTo, route.params);
                                 data.search = route.params;
                                 data.hasRedirection = true;
-                            } else {
+                            }
+                            else {
                                 var oldPath = $location.path();
                                 var oldSearch = $location.search();
                                 var newUrl = route.redirectTo(route.pathParams, oldPath, oldSearch);
@@ -770,7 +775,8 @@
                                     data.hasRedirection = true;
                                 }
                             }
-                        } else if (route.resolveRedirectTo) {
+                        }
+                        else if (route.resolveRedirectTo) {
                             return $q.
                                 resolve($injector.invoke(route.resolveRedirectTo)).
                                 then(function(newUrl) {
@@ -792,7 +798,8 @@
 
                     if (data.route !== $route.current) {
                         keepProcessingRoute = false;
-                    } else if (data.hasRedirection) {
+                    }
+                    else if (data.hasRedirection) {
                         var oldUrl = $location.url();
                         var newUrl = data.url;
 
@@ -800,7 +807,8 @@
                             $location.
                                 url(newUrl).
                                 replace();
-                        } else {
+                        }
+                        else {
                             newUrl = $location.
                                 path(data.path).
                                 search(data.search).
@@ -840,7 +848,8 @@
                         if (angular.isFunction(template)) {
                             template = template(route.params);
                         }
-                    } else if (angular.isDefined(templateUrl = route.templateUrl)) {
+                    }
+                    else if (angular.isDefined(templateUrl = route.templateUrl)) {
                         if (angular.isFunction(templateUrl)) {
                             templateUrl = templateUrl(route.params);
                         }
@@ -878,7 +887,8 @@
                     angular.forEach((string || '').split(':'), function(segment, i) {
                         if (i === 0) {
                             result.push(segment);
-                        } else {
+                        }
+                        else {
                             var segmentMatch = segment.match(/(\w+)(?:[?*])?(.*)/);
                             var key = segmentMatch[1];
                             result.push(params[key]);
@@ -937,7 +947,9 @@
  * ```
  */
     function $RouteParamsProvider() {
-        this.$get = function() { return {}; };
+        this.$get = function() {
+            return {}; 
+        };
     }
 
     ngRouteModule.directive('ngView', ngViewFactory);
@@ -1182,7 +1194,8 @@
                         currentScope = current.scope = newScope;
                         currentScope.$emit('$viewContentLoaded');
                         currentScope.$eval(onloadExp);
-                    } else {
+                    }
+                    else {
                         cleanupLastView();
                     }
                 }
