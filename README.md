@@ -37,11 +37,11 @@ For code linting (used eslint recommended rules). Check against `'app.js' 'route
 
 # APIs Expose from Node
 ### Books
-1. Books list. `GET` [http://localhost:8000/api/books](http://localhost:8000/api/books).<br>
-2. Book Detail. `GET` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
-3. Add Book. `POST` [http://localhost:8000/api/books/](http://localhost:8000/api/books/).<br>
-4. Edit Book. `PUT` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
-5. Delete Book. `DELETE` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
+1. Books list. `GET` [http://localhost:8000/thesys/api/books](http://localhost:8000/thesys/api/books).<br>
+2. Book Detail. `GET` [http://localhost:8000/thesys/api/book/id](http://localhost:8000/thesys/api/book/5964609e9d6991085acec4c2).<br>
+3. Add Book. `POST` [http://localhost:8000/thesys/api/book/](http://localhost:8000/thesys/api/book/).<br>
+4. Edit Book. `PUT` [http://localhost:8000/thesys/api/book/id](http://localhost:8000/thesys/api/book/5964609e9d6991085acec4c2).<br>
+5. Delete Book. `DELETE` [http://localhost:8000/thesys/api/book/id](http://localhost:8000/thesys/api/book/5964609e9d6991085acec4c2).<br>
 
 
 
