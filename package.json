@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "lint": "./node_modules/.bin/eslint 'app.js' 'route.js' 'config.js' 'server/**/*.js' 'public/**/*.js' -f table --fix"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +14,17 @@
     "angular-route": "^1.6.2",
     "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
+    "dotenv": "^4.0.0",
     "express": "^4.14.1",
-    "mongoose": "^4.8.3"
+    "mongoose": "^4.8.3",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

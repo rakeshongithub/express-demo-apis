@@ -13,38 +13,39 @@ As soon as application will run mongodb will connect with node backend services.
 In the project directory, you can run:
 
 Install nodemon globally.
-`npm install -g nodemon`
+`yarn add global nodemon`
 
-`npm install` to get the dependencies
+`yarn` or `yarn install` to get the dependencies
 
-### `npm start`
+### `yarn start`
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
+
+### `yarn lint`
+For code linting (used eslint recommended rules). Check against `'app.js' 'route.js' 'config.js' 'server/**/*.js' 'public/**/*.js'`
+╔═════════════════════════════════════════════════════════════════╗
+║ 0 Errors                                                        ║
+╟═════════════════════════════════════════════════════════════════╢
+║ 0 Warning                                                       ║
+╚═════════════════════════════════════════════════════════════════╝
+
 
 # Routes Available within the Application
 
-1. Home or Book lists [http://localhost:3000](http://localhost:3000) to view it in the browser.<br>
-2. Book lists [http://localhost:3000/#!/books](http://localhost:3000/#!/books) to view all available books in store.<br>
-4. Book detail [http://localhost:3000/#!/books/detail/id](http://localhost:3000/#!/books/detail/id).<br>
-3. Add new book [http://localhost:3000/#!/books/add](http://localhost:3000/#!/books/add).<br>
-4. Edit existing book info [http://localhost:3000/#!/books/edit/id](http://localhost:3000/#!/books/edit/id).
+1. Home or Book lists [http://localhost:8000](http://localhost:8000) to view it in the browser.<br>
+2. Book lists [http://localhost:8000/#!/books](http://localhost:8000/#!/books) to view all available books in store.<br>
+4. Book detail [http://localhost:8000/#!/books/detail/id](http://localhost:8000/#!/books/detail/id).<br>
+3. Add new book [http://localhost:8000/#!/books/add](http://localhost:8000/#!/books/add).<br>
+4. Edit existing book info [http://localhost:8000/#!/books/edit/id](http://localhost:8000/#!/books/edit/id).
 
 
 # APIs Expose from Node
 ### Books
-1. Books list. `GET` [http://localhost:3000/api/books](http://localhost:3000/api/books).<br>
-2. Book Detail. `GET` [http://localhost:3000/api/books/id](http://localhost:3000/api/books/:id).<br>
-3. Add Book. `POST` [http://localhost:3000/api/books/](http://localhost:3000/api/books/).<br>
-4. Edit Book. `PUT` [http://localhost:3000/api/books/id](http://localhost:3000/api/books/:id).<br>
-5. Delete Book. `DELETE` [http://localhost:3000/api/books/id](http://localhost:3000/api/books/:id).<br>
-
-### Geners
-1. Geners list. `GET` [http://localhost:3000/api/geners](http://localhost:3000/api/geners).<br>
-2. Gener Detail. `GET` [http://localhost:3000/api/geners/id](http://localhost:3000/api/geners/:id).<br>
-3. Add Gener. `POST` [http://localhost:3000/api/geners/](http://localhost:3000/api/geners/).<br>
-4. Edit Gener. `PUT` [http://localhost:3000/api/geners/id](http://localhost:3000/api/geners/:id).<br>
-5. Delete Gener. `DELETE` [http://localhost:3000/api/geners/id](http://localhost:3000/api/geners/:id).
-
+1. Books list. `GET` [http://localhost:8000/api/books](http://localhost:8000/api/books).<br>
+2. Book Detail. `GET` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
+3. Add Book. `POST` [http://localhost:8000/api/books/](http://localhost:8000/api/books/).<br>
+4. Edit Book. `PUT` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
+5. Delete Book. `DELETE` [http://localhost:8000/api/books/id](http://localhost:8000/api/books/:id).<br>
 
 
 
