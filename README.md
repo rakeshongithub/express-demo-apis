@@ -23,11 +23,7 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 ### `yarn lint`
 For code linting (used eslint recommended rules). Check against `'app.js' 'route.js' 'config.js' 'server/**/*.js' 'public/**/*.js'`
-╔═════════════════════════════════════════════════════════════════╗
-║ 0 Errors                                                        ║
-╟═════════════════════════════════════════════════════════════════╢
-║ 0 Warning                                                       ║
-╚═════════════════════════════════════════════════════════════════╝
+0 Errors || 0 Warning
 
 
 # Routes Available within the Application
