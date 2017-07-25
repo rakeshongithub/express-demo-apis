@@ -3,14 +3,14 @@ var router = express.Router({
     caseSensitive: true
 });
 
-var booksController = require('./app/server/controllers/booksController');
+var booksController = require('./controllers/booksController');
 
 var routes = {
-    'GET /api/books': booksController.getBooks,
-    'GET /api/books/:_id': booksController.getBookById,
-    'POST /api/books': booksController.addBook,
-    'PUT /api/books/:_id': booksController.updateBook,
-    'DELETE /api/books/:_id': booksController.deleteBook
+    'GET /books': booksController.getBooks,
+    'GET /book/:_id': booksController.getBookById,
+    'POST /book': booksController.addBook,
+    'PUT /book/:_id': booksController.updateBook,
+    'DELETE /book/:_id': booksController.deleteBook
 };
 
 module.exports.init = (app) => {
@@ -20,5 +20,5 @@ module.exports.init = (app) => {
         router.route(path)[method.toLowerCase()](routes[routekey]);
     });
 
-    app.use('/', router);
+    app.use('/thesys/api', router);
 };

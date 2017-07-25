@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 var logger = require('winston');
-var config = require('./config');
+var config = require('./../../config');
 var route = require('./route');
 var mongoConnection = require('./mongo.connection');
 

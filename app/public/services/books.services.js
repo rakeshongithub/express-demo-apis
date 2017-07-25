@@ -3,9 +3,11 @@
 var myApp = angular.module('myApp');
 
 function BooksService($http, $log, $q) {
+    const BASE_URL = '/thesys/api';
+
     function getBooks() {
         var deffered = $q.defer();
-        $http.get('/api/books').then((response) => {
+        $http.get(`${BASE_URL}/books`).then((response) => {
             deffered.resolve(response.data);
         }, function (err) {
             deffered.reject(err);
@@ -15,7 +17,7 @@ function BooksService($http, $log, $q) {
     }
 
     function getBook(id) {
-        return $http.get('/api/books/' + id).then((response) => {
+        return $http.get(`${BASE_URL}/book/` + id).then((response) => {
             return response.data;
         }, function (err) {
             $log.error('ERROR: ', err.status);
@@ -23,7 +25,7 @@ function BooksService($http, $log, $q) {
     }
 
     function addBook(newBook) {
-        return $http.post('/api/books/', newBook).then((response) => {
+        return $http.post(`${BASE_URL}/book/`, newBook).then((response) => {
             $log.info('Added Successfully:', response);
         }, function (err) {
             $log.error('ERROR:', err);
@@ -31,7 +33,7 @@ function BooksService($http, $log, $q) {
     }
 
     function editBook(id, newBook) {
-        return $http.put('/api/books/' + id, newBook).then((response) => {
+        return $http.put(`${BASE_URL}/book/` + id, newBook).then((response) => {
             $log.info('Updated Successfully:', response.status, response.statusText);
         }, function (err) {
             $log.error('ERROR:', err);
@@ -39,7 +41,7 @@ function BooksService($http, $log, $q) {
     }
 
     function deleteBook(id) {
-        return $http.delete('/api/books/' + id).then((response) => {
+        return $http.delete(`${BASE_URL}/book/` + id).then((response) => {
             $log.info('Delete Successfully:', response.status, response.statusText);
         }, function (err) {
             $log.error('ERROR:', err);

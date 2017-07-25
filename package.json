@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon app/server/app.js",
     "lint": "./node_modules/.bin/eslint 'app.js' 'route.js' 'config.js' 'app/**/*.js' -f table --fix"
   },
   "author": "",
