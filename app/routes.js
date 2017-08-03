@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Server App Start
+ * App Routes
  * @author RKU143 <rkumar148@sapient.com>
  */
 var express = require('express');

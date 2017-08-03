@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * Error Codes
+ * @author RKU143 <rkumar148@sapient.com>
+ */
 const ErrorsEnum = {
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,

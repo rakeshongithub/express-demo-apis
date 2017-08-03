@@ -23,7 +23,7 @@ function getReportById(reqOptions) {
 
 function getAllReports() {
     return new Promise((resolve, reject) => {
-        requestServer.requestForJSON(serverUrl.reportersDataById)
+        requestServer.requestForJSON(serverUrl.getAllReportsData)
             .then(data => resolve(data)).catch(err => reject(err));
     });
 }

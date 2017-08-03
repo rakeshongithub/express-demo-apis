@@ -1,5 +1,5 @@
 /**
- * External Server URIs
+ * App Config
  * @author RKU143 <rkumar148@sapient.com>
  */
 const bodyParser = require('body-parser');
