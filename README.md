@@ -14,6 +14,9 @@ Install nodemon globally. `npm install nodemon -g`
 
     npm start - Node server start on http://localhost:8000
     npm run lint - Eslint execution
+    npm run test - Unit Test
+    npm run test:coverage - Unit Test with coverage
+    npm run test:lint - Eslint execution for specs
 
 
 ## APIs Available
