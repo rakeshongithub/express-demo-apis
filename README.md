@@ -18,7 +18,7 @@ Install nodemon globally. `npm install nodemon -g`
 
 ## APIs Available
    1. GET - [/thesys/api/reporters](http://localhost:3000/thesys/api/reporters)
-   2. GET - [/thesys/api/reporters/:id](http://localhost:3000/thesys/api/reporters/3bf4b8eae5674a4e853ced241e832016)
+   2. GET - [/thesys/api/reporters/:id/filter?fromDate=20150122&endDate=20150415](http://localhost:3000/thesys/api/reporters/3bf4b8eae5674a4e853ced241e832016/filter?fromDate=20150122&endDate=20150415)
 
 
 ## Request Header to access APIs
