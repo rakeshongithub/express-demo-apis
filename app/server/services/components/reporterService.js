@@ -5,19 +5,24 @@
  */
 const requestServer = require('./../common/requestService');
 const serverUrl = require('./../../../externalServerUrls');
+const reportByIdTransformService = require('./reportByIdTransformService');
 
 module.exports = {
     getReportById,
     getAllReports
 };
 
-function getReportById(reqOptions) {
+function getReportById(options) {
     return new Promise((resolve, reject) => {
         requestServer.requestForJSON(serverUrl.reportersDataById, {
-            fromDate: reqOptions.fromDate,
-            endDate: reqOptions.endDate,
-            reporterId: reqOptions.reporterId
-        }).then(data => resolve(data)).catch(err => reject(err));
+            reporterId: options.reporterId
+        })
+            .then(data => resolve(reportByIdTransformService.transformData({
+                data: data,
+                fromDate: options.fromDate,
+                endDate: options.endDate
+            })))
+            .catch(err => reject(err));
     });
 }
 

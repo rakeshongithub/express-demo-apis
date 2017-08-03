@@ -5,6 +5,6 @@
  */
 
 module.exports = {
-    reportersDataById: '{udmHost}/reports/{reporterId}?fromDate={fromDate}&endDate={endDate}',
+    reportersDataById: '{udmHost}/reports/{reporterId}',
     getAllReportsData: '{udmHost}/reports'
 };
