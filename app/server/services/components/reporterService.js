@@ -9,10 +9,11 @@ const reportByIdTransformService = require('./reportByIdTransformService');
 
 module.exports = {
     getReportById,
-    getAllReports
+    getAllReports,
+    getFilteredReportById
 };
 
-function getReportById(options) {
+function getFilteredReportById(options) {
     return new Promise((resolve, reject) => {
         requestServer.requestForJSON(serverUrl.reportersDataById, {
             reporterId: options.reporterId
@@ -22,6 +23,16 @@ function getReportById(options) {
                 fromDate: options.fromDate,
                 endDate: options.endDate
             })))
+            .catch(err => reject(err));
+    });
+}
+
+function getReportById(options) {
+    return new Promise((resolve, reject) => {
+        requestServer.requestForJSON(serverUrl.reportersDataById, {
+            reporterId: options.reporterId
+        })
+            .then(data => resolve(data))
             .catch(err => reject(err));
     });
 }

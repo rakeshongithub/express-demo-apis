@@ -12,7 +12,8 @@ var reporterController = require('./server/controllers/reporterController');
 
 var routes = {
     'GET /reporters/': reporterController.getAllReports,
-    'GET /reporters/:reporterId/filter': reporterController.getReportById,
+    'GET /reporters/:reporterId/filter': reporterController.getFilteredReportById,
+    'GET /reporters/:reporterId': reporterController.getReportById
 };
 
 module.exports.init = (app) => {
