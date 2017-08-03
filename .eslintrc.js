@@ -1,3 +1,4 @@
+var OFF = 0, WARN = 1, ERROR = 2;
 module.exports = {
     "env": {
         "browser": true,
@@ -6,12 +7,13 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "rules": {
+        "max-len": [ERROR, 120],
         "indent": [
             "error",
             4
         ],
-        "brace-style": [2, "stroustrup"],
-        "func-call-spacing": [2, "never"],
+        "brace-style": [ERROR, "stroustrup"],
+        "func-call-spacing": [ERROR, "never"],
         "linebreak-style": [
             "error",
             "unix"
