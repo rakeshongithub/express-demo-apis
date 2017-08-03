@@ -1,20 +1,21 @@
 /* global process */
 
+/**
+ * Server App Start
+ * @author RKU143 <rkumar148@sapient.com>
+ */
+
 var express = require('express');
 var app = express();
-var logger = require('winston');
-var config = require('./../../config');
-var route = require('./route');
-var mongoConnection = require('./mongo.connection');
+var logger = require('./server/services/common/loggerService').get('APP');
+var config = require('./config');
+var route = require('./routes');
 
 // to get the values from .env
 require('dotenv').config();
 
 config.init(app);
 route.init(app);
-
-// Connect with mongodb
-mongoConnection.init();
 
 var server = app.listen(process.env.PORT || 8000, function() {
     logger.info('=> Listing port on', server.address().port);

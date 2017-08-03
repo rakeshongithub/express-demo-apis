@@ -1,16 +1,18 @@
+'use strict';
+/**
+ * Server App Start
+ * @author RKU143 <rkumar148@sapient.com>
+ */
 var express = require('express');
 var router = express.Router({
     caseSensitive: true
 });
 
-var booksController = require('./controllers/booksController');
+var reporterController = require('./server/controllers/reporterController');
 
 var routes = {
-    'GET /books': booksController.getBooks,
-    'GET /book/:_id': booksController.getBookById,
-    'POST /book': booksController.addBook,
-    'PUT /book/:_id': booksController.updateBook,
-    'DELETE /book/:_id': booksController.deleteBook
+    'GET /reporters/': reporterController.getAllReports,
+    'GET /reporters/:reporterId/filter': reporterController.getReportById,
 };
 
 module.exports.init = (app) => {

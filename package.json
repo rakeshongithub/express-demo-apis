@@ -4,8 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app/server/app.js",
-    "lint": "./node_modules/.bin/eslint 'app.js' 'route.js' 'config.js' 'app/**/*.js' -f table --fix"
+    "start": "nodemon app/app.js",
+    "lint": "./node_modules/.bin/eslint 'app.js' 'route.js' 'config.js' 'externalServerUrl.js' 'app/**/*.js' -f table --fix",
+    "test:coverage": "NODE_ENV=test nyc npm run test:unit",
+    "test:unit": "node specs/_run.js",
+    "test": "npm run test:unit",
+    "test:lint": "eslint -c specs/.eslintrc.js 'specs/**/*.spec.js' -f table table --fix"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +21,9 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "mongoose": "^4.8.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "url-template": "^2.0.8",
     "winston": "^2.3.1"
   },
   "devDependencies": {
@@ -26,5 +33,23 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1"
+  },
+  "nyc": {
+    "include": [
+      "app/server/**/*.js"
+    ],
+    "exclude": [
+      "spec/**/*.spec.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "cache": false,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 90
   }
 }
