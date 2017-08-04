@@ -8,10 +8,14 @@ const compression = require('compression');
 const headerEnums = require('./server/enums/headersEnum');
 const headerValidator = require('./server/services/common/validateHeadersServices');
 
+// to get the values from .env
+require('dotenv').config();
+
 module.exports = {
     init,
     getWinstonLogger,
-    cors
+    cors,
+    confs
 };
 
 /**
@@ -71,4 +75,16 @@ function cors(app) {
         }
         next();
     });
+}
+
+/**
+ * @description app config
+ * @params [app]
+ */
+function confs() {
+    return {
+        udmHost: process.env.UDM_HOST,
+        httpPort: process.env.PORT || 8000,
+        env: process.env.ENV
+    }
 }

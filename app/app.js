@@ -7,8 +7,11 @@
 
 var express = require('express');
 var app = express();
+var _ = require('lodash');
 var logger = require('./server/services/common/loggerService').get('APP');
+var globalErrorHandler = require('./server/services/common/globalErrorHandler');
 var config = require('./config');
+var confs = require('./config').confs();
 var route = require('./routes');
 
 // to get the values from .env
@@ -17,24 +20,15 @@ require('dotenv').config();
 config.init(app);
 route.init(app);
 
-var server = app.listen(process.env.PORT || 8000, function() {
-    logger.info('=> Listing port on', server.address().port);
+_.forEach(confs, function (value, key) {
+    logger.info(`APP startup flag set for ${key}: ${value}`);
 });
 
-/**
- * @description Error handling for uncaught exception
- * @modules [err]
- */
-process.on('uncaughtException', (err) => {
-    logger.error('=============> UNCAUGHT EXCEPTION OCCUR! <=============');
-    logger.error('ERROR STACK - ', err && err.stack);
+// app start
+app.listen(confs.httpPort, () => {
+    logger.info(`App start at PORT: http://localhost:${confs.httpPort}/`)
 });
 
-/**
- * @description Error handling for uncaught rejection
- * @modules [err]
- */
-process.on('uncaughtRejection', (err) => {
-    logger.error('=============> UNCAUGHT REJECTION CAUGHT! <=============');
-    logger.error('ERROR STACK - ', err && err.stack);
-});
+
+// Global Error Handler
+globalErrorHandler.handleError();

@@ -8,6 +8,7 @@ const requestPromise = require('request-promise');
 const urlTemplate = require('url-template');
 const logger = require('./loggerService').get('REQUEST_SERVICE');
 const resolveLogger = require('./../utils/resolveLogger');
+const confs = require('./../../../config').confs();
 
 /**
  * @description Request service for third party APIs
@@ -48,7 +49,7 @@ function requestForJSON(url, params) {
 function parseURL(url, data) {
     data = data || {};
     url = url.replace(/{(mockUDMHost|mockCMSHost|cmsHost|udmHost)}/g, '');
-    return process.env.EXTERNAL_HOST_URL + urlTemplate.parse(url).expand(data);
+    return confs.udmHost + urlTemplate.parse(url).expand(data);
 }
 
 /**
