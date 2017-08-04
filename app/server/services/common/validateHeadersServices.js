@@ -14,6 +14,7 @@ const validate = header => (!!header);
 const headerValidator = (reqHeaders, req, res, next) => {
     const logger = require('./loggerService').get('validateHeadersServices');
 
+    logger.info('xxxxxxxxxxxxx REQUST START xxxxxxxxxxxxx');
     logger.info('Middleware is triggered on for validating required headers');
     const finalHeaders = reqHeaders || {};
     const inValidHeaders = _.filter(Object.keys(finalHeaders), (header) => !validate(req.header(finalHeaders[header])));

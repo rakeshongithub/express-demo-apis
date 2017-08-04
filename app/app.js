@@ -23,10 +23,11 @@ _.forEach(confs, function (value, key) {
 });
 
 // app start
-app.listen(confs.httpPort, () => {
+var server = app.listen(confs.httpPort, () => {
     logger.info(`App start at PORT: http://localhost:${confs.httpPort}/`);
 });
 
+module.exports = server;
 
 // Global Error Handler
 globalErrorHandler.handleError();
