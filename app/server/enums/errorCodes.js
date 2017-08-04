@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Error Codes
+ * @description Error Codes
  * @author RKU143 <rkumar148@sapient.com>
  */
 const ErrorsEnum = {
@@ -13,4 +13,8 @@ const ErrorsEnum = {
     SERVICE_UNAVAILABLE: 503,
 };
 
+/**
+ * @description Export modules
+ * @modules [ErrorsEnum]
+ */
 module.exports = ErrorsEnum;

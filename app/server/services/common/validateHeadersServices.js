@@ -1,17 +1,21 @@
 'use strict';
 /**
- * Validate Headers Srevice
+ * @description Validate Headers Srevice
  * @author RKU143 <rkumar148@sapient.com>
  */
 const _ = require('lodash');
 const errorCodes = require('./../../enums/errorCodes');
 const validate = header => (!!header);
 
-const headerValidator = (requiredHeaders, req, res, next) => {
+/**
+ * @description Header Validator
+ * @params [reqHeaders, req, res, next]
+ */
+const headerValidator = (reqHeaders, req, res, next) => {
     const logger = require('./loggerService').get('validateHeadersServices');
 
     logger.info('Middleware is triggered on for validating required headers');
-    const finalHeaders = requiredHeaders || {};
+    const finalHeaders = reqHeaders || {};
     const inValidHeaders = _.filter(Object.keys(finalHeaders), (header) => !validate(req.header(finalHeaders[header])));
     if (inValidHeaders.length) {
         logger.info('The request does not have following headers.');
@@ -23,4 +27,8 @@ const headerValidator = (requiredHeaders, req, res, next) => {
     }
 };
 
+/**
+ * @description Export modules
+ * @modules [headerValidator]
+ */
 module.exports = headerValidator;

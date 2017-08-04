@@ -16,7 +16,7 @@ module.exports = {
 
 /**
  * @description initialise app config
- * @param app
+ * @params [app]
  */
 function init(app) {
     const logger = require('./server/services/common/loggerService').get('CONFIG');
@@ -41,8 +41,7 @@ function init(app) {
 
 /**
  * @description Winston Logger Configration
- * @param level
- * @param label
+ * @params [level, label]
  */
 function getWinstonLogger(level, label) {
     var loggerTransports = [
@@ -60,8 +59,8 @@ function getWinstonLogger(level, label) {
 }
 
 /**
- *
  * @description handles CORS
+ * @params [app]
  */
 function cors(app) {
     app.all('*', function (req, res, next) {

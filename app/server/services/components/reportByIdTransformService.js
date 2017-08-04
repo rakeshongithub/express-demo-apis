@@ -1,11 +1,15 @@
 'use strict';
 /**
- * Report Transform Service
+ * @description Report Transform Service
  * @author RKU143 <rkumar148@sapient.com>
  */
 const _ = require('lodash');
 const moment = require('moment');
 
+/**
+ * @description Export modules
+ * @modules [transformData]
+ */
 module.exports.transformData = (options) => {
     var filterReports = _.filter(options.data.userReports, (item) => {
         var itemDate = moment(item.date);
@@ -18,6 +22,10 @@ module.exports.transformData = (options) => {
     });
 };
 
+/**
+ * @description check date range condition
+ * @modules [itemDate, fromDate, endDate]
+ */
 function isBetweenRange(itemDate, fromDate, endDate) {
     return (itemDate >= moment(fromDate)) && (itemDate <= moment(endDate));
 }

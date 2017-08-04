@@ -1,7 +1,7 @@
 'use strict';
 /* global process */
 /**
- * Request Server Service
+ * @description Request Server Service
  * @author RKU143 <rkumar148@sapient.com>
  */
 const requestPromise = require('request-promise');
@@ -9,14 +9,9 @@ const urlTemplate = require('url-template');
 const logger = require('./loggerService').get('REQUEST_SERVICE');
 const resolveLogger = require('./../utils/resolveLogger');
 
-module.exports = {
-    requestForJSON
-};
-
 /**
  * @description Request service for third party APIs
- * @param url
- * @param params
+ * @params [url, params]
  */
 function requestForJSON(url, params) {
     return new Promise((resolve, reject) => {
@@ -48,11 +43,16 @@ function requestForJSON(url, params) {
 
 /**
  * @description Parse URLs
- * @param url
- * @param data
+ * @params [url, data]
  */
 function parseURL(url, data) {
     data = data || {};
     url = url.replace(/{(mockUDMHost|mockCMSHost|cmsHost|udmHost)}/g, '');
     return process.env.EXTERNAL_HOST_URL + urlTemplate.parse(url).expand(data);
 }
+
+/**
+ * @description Export modules
+ * @modules [requestForJSON]
+ */
+module.exports = {requestForJSON};
