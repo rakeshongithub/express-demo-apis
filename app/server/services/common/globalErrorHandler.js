@@ -1,4 +1,5 @@
 'use strict';
+/* global process */
 const logger = require('./loggerService').get('GLOBAL_ERROR_HANDLER');
 /**
  * @description Global Error Handler

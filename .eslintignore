@@ -1,6 +1,5 @@
 /node_modules/**
 /app/public/js/libs/**
 /coverage/**
-/app/config.js
 /app/externalServerUrls.js
 /app/routes.js

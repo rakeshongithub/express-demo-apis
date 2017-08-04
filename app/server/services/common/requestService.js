@@ -1,5 +1,4 @@
 'use strict';
-/* global process */
 /**
  * @description Request Server Service
  * @author RKU143 <rkumar148@sapient.com>

@@ -1,5 +1,3 @@
-/* global process */
-
 /**
  * @description Server App Start
  * @author RKU143 <rkumar148@sapient.com>
@@ -26,7 +24,7 @@ _.forEach(confs, function (value, key) {
 
 // app start
 app.listen(confs.httpPort, () => {
-    logger.info(`App start at PORT: http://localhost:${confs.httpPort}/`)
+    logger.info(`App start at PORT: http://localhost:${confs.httpPort}/`);
 });
 
 

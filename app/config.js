@@ -1,3 +1,4 @@
+/* global process */
 /**
  * App Config
  * @author RKU143 <rkumar148@sapient.com>
@@ -86,5 +87,5 @@ function confs() {
         udmHost: process.env.UDM_HOST,
         httpPort: process.env.PORT || 8000,
         env: process.env.ENV
-    }
+    };
 }
