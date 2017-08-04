@@ -1,3 +1,4 @@
+/* global describe, it, beforeEach, afterEach */
 const request = require('supertest');
 const headerEnums = require('./../app/server/enums/headersEnum');
 describe('Thesys Cat express app', () => {

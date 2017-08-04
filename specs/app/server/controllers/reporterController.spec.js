@@ -1,3 +1,4 @@
+/* global describe, it, expect */
 const reporterController = require('./../../../../app/server/controllers/reporterController');
 
 describe('REPORTER CONTROLLER', () => {
