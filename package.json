@@ -15,8 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.6.2",
-    "angular-route": "^1.6.2",
     "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
     "compression": "^1.7.0",
@@ -26,7 +24,6 @@
     "jasmine-console-reporter": "^1.2.7",
     "jasmine-supertest": "^1.0.0",
     "moment": "^2.18.1",
-    "mongoose": "^4.8.3",
     "nyc": "^11.1.0",
     "really-need": "^1.9.2",
     "request": "^2.81.0",
