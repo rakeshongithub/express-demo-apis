@@ -4,25 +4,26 @@
  * @author RKU143 <rkumar148@sapient.com>
  */
 const _ = require('lodash');
-const errorCodes = require('./../../enums/errorCodes');
+const statusCodes = require('./../../enums/statusCodes');
 const validate = header => (!!header);
 
 /**
  * @description Header Validator
  * @params [reqHeaders, req, res, next]
  */
-const headerValidator = (reqHeaders, req, res, next) => {
-    const logger = require('./loggerService').get('validateHeadersServices');
+const headerValidator = (logger, reqHeaders, req, res, next) => {
 
-    logger.info('xxxxxxxxxxxxx REQUST START xxxxxxxxxxxxx');
+    logger.info(`==> START: Header Validation for request: ${req.url}`);
     logger.info('Middleware is triggered on for validating required headers');
     const finalHeaders = reqHeaders || {};
-    const inValidHeaders = _.filter(Object.keys(finalHeaders), (header) => !validate(req.header(finalHeaders[header])));
+    const inValidHeaders = _.filter(Object.keys(finalHeaders), header => !validate(req.header(finalHeaders[header])));
     if (inValidHeaders.length) {
-        logger.info('The request does not have following headers.');
-        res.status(errorCodes.BAD_REQUEST).send(`Request does not have following headers: ${inValidHeaders.toString()}`);
+        logger.error(`=> FAILED: Header Validation for Request: ${req.url}`);
+        logger.error('The request does not have following headers.');
+        res.status(statusCodes.UNAUTHORIZED).send(`Request does not have following headers: ${inValidHeaders.toString()}`);
     }
     else {
+        logger.info(`==> DONE: Header Validation for request: ${req.url}`);
         logger.info('The request have all the required headers.');
         next();
     }

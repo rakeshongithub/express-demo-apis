@@ -34,8 +34,7 @@ function requestForJSON(url, params) {
                 resolve(resData);
             })
             .catch(error => {
-                logger.error('=> Server JSON request failed for URL:', options.url);
-                logger.error('=> Server JSON request error, statusCode:', error.statusCode);
+                logger.error('=> Request failed for URL:', options.url);
                 reject(error);
             });
     });

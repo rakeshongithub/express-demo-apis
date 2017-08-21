@@ -15,7 +15,7 @@ var route = require('./routes');
 // to get the values from .env
 require('dotenv').config();
 
-config.init(app);
+config.init(app, logger);
 route.init(app);
 
 _.forEach(confs, function (value, key) {

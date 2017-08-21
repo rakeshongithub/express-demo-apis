@@ -23,6 +23,7 @@
     "express": "^4.14.1",
     "jasmine": "^2.7.0",
     "jasmine-console-reporter": "^1.2.7",
+    "jasmine-supertest": "^1.0.0",
     "moment": "^2.18.1",
     "mongoose": "^4.8.3",
     "nyc": "^11.1.0",

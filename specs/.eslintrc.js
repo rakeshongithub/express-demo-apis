@@ -7,7 +7,7 @@ module.exports = {
   },
   "extends": "eslint:recommended",
   "rules": {
-    "max-len": [ERROR, 140],
+    "max-len": [ERROR, 120],
     "indent": [
       "error",
       4

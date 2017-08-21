@@ -23,15 +23,14 @@ module.exports = {
  * @description initialise app config
  * @params [app]
  */
-function init(app) {
-    const logger = require('./server/services/common/loggerService').get('CONFIG');
+function init(app, logger) {
     const resolveLogger = require('./server/services/utils/resolveLogger');
     // Body parser for JSON
     app.use(bodyParser.json());
     app.use(compression());
     cors(app);
     // Header Validation
-    app.use((req, res, next) => headerValidator(headerEnums.reports, req, res, next));
+    app.use((req, res, next) => headerValidator(logger, headerEnums.reports, req, res, next));
 
     app.use('*', (req, res, next) => {
         logger.info('Application -', resolveLogger({

@@ -4,7 +4,7 @@
  * @author RKU143 <rkumar148@sapient.com>
  */
 const reporterService = require('./../services/components/reporterService');
-const errorCodes = require('./../enums/errorCodes');
+const statusCodes = require('./../enums/statusCodes');
 var logger = require('./../services/common/loggerService').get('REPORT_CONTROLLER');
 var resolveLogger = require('./../services/utils/resolveLogger');
 
@@ -18,15 +18,19 @@ function getReportById(req, res) {
         reporterId: req.params.reporterId
     })
         .then(data => {
-            logger.info('-> reporterService.getReportById :: ABLE to fetch data', resolveLogger({
-                satusCode: res.statusCode
+            logger.info('-> reporterService.getReportById :: Successfully fetched data', resolveLogger({
+                statusCode: res.statusCode
             }));
             res.json(data);
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getReportById fail to fetch data');
-            logger.error('<- ERROR', resolveLogger({errMessage: err.message, errorStack: err}));
-            res.status(errorCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            logger.error('<- ERROR', resolveLogger({
+                statusCode: res.statusCode,
+                errMessage: err.message,
+                errorStack: err
+            }));
         });
 }
 
@@ -42,15 +46,19 @@ function getFilteredReportById(req, res) {
         reporterId: req.params.reporterId
     })
         .then(data => {
-            logger.info('-> reporterService.getFilteredReportById :: ABLE to fetch data', resolveLogger({
-                satusCode: res.statusCode
+            logger.info('-> reporterService.getFilteredReportById :: Successfully fetched data', resolveLogger({
+                statusCode: res.statusCode
             }));
             res.json(data);
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getFilteredReportById fail to fetch data');
-            logger.error('<- ERROR', resolveLogger({errMessage: err.message, errorStack: err}));
-            res.status(errorCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            logger.error('<- ERROR', resolveLogger({
+                statusCode: res.statusCode,
+                errMessage: err.message,
+                errorStack: err
+            }));
         });
 }
 
@@ -62,15 +70,19 @@ function getAllReports(req, res) {
     logger.info('-> getAllReports initiated to get data');
     reporterService.getAllReports()
         .then(data => {
-            logger.info('-> reporterService.getAllReports :: ABLE to fetch data', resolveLogger({
-                satusCode: res.statusCode
+            logger.info('-> reporterService.getAllReports :: Successfully fetched data', resolveLogger({
+                statusCode: res.statusCode
             }));
             res.json(data);
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getAllReports fail to fetch data');
-            logger.error('<- ERROR', resolveLogger({errMessage: err.message, errorStack: err}));
-            res.status(errorCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            logger.error('<- ERROR', resolveLogger({
+                statusCode: res.statusCode,
+                errMessage: err.message,
+                errorStack: err
+            }));
         });
 }
 

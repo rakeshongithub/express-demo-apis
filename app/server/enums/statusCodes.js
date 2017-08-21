@@ -3,7 +3,8 @@
  * @description Error Codes
  * @author RKU143 <rkumar148@sapient.com>
  */
-const ErrorsEnum = {
+const StatusEnum = {
+    SUCCESS_OK: 200,
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
     FORBIDDEN: 403,
@@ -17,4 +18,4 @@ const ErrorsEnum = {
  * @description Export modules
  * @modules [ErrorsEnum]
  */
-module.exports = ErrorsEnum;
+module.exports = StatusEnum;
