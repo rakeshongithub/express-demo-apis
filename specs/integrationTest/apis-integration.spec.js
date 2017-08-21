@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 /* global describe, it */
-const app = require('./../app/app');
+const app = require('./../../app/app');
 const supertest = require('supertest');
 const onEndTestcase = require('jasmine-supertest');
 const request = supertest(app);
-const headerEnums = require('./../app/server/enums/headersEnum');
-const statusCode = require('./../app/server/enums/statusCodes');
+const headerEnums = require('./../../app/server/enums/headersEnum');
+const statusCode = require('./../../app/server/enums/statusCodes');
 
 let userReportId;
 let fromDate = 20100320; // Date format: YYYYMMDD
@@ -25,10 +25,10 @@ describe('Thesys Cat express app', () => {
         request.get('/thesys/api/reporters/')
             .set(headerEnums.reports)
             .expect(res => {
-                userReportId = res.body[0].id
+                userReportId = res.body[0].id;
             })
             .expect(statusCode.SUCCESS_OK)
-            .end(onEndTestcase(done))
+            .end(onEndTestcase(done));
     });
 
     it('should responds 401 unauthorized to /thesys/api/reporters/:id if missing requested headers', (done) => {

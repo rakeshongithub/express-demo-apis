@@ -8,6 +8,7 @@
     "lint": "./node_modules/.bin/eslint 'app.js' 'route.js' 'config.js' 'externalServerUrl.js' 'app/**/*.js' -f table --fix",
     "test:coverage": "NODE_ENV=test nyc npm run test:unit",
     "test:unit": "node specs/_run.js",
+    "test:integration": "node specs/integrationTest/_run-integration.js",
     "test": "npm run test:unit",
     "test:lint": "eslint -c specs/.eslintrc.js 'specs/**/*.spec.js' -f table table --fix"
   },
