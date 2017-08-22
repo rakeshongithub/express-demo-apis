@@ -23,6 +23,16 @@ describe('INTEGRATION TEST: APIs', () => {
             .end(onEndTestcase(done));
     });
 
+    it('should responds 500 to /thesys/api/reporters/ with valid requested headers', (done) => {
+        nock('http://localhost:3017')
+            .get('/reports')
+            .reply(500);
+        request.get('/thesys/api/reporters/')
+            .set(headerEnums.reports)
+            .expect(statusCode.INTERNAL_SERVER_ERROR)
+            .end(onEndTestcase(done));
+    });
+
     it('should responds 200 success to /thesys/api/reporters/ with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
@@ -40,6 +50,16 @@ describe('INTEGRATION TEST: APIs', () => {
             .end(onEndTestcase(done));
     });
 
+    it('should responds 500 to /thesys/api/reporters/:id with valid requested headers', (done) => {
+        nock('http://localhost:3017')
+            .get(`/reports/${mockReporterId}`)
+            .reply(500);
+        request.get(`/thesys/api/reporters/${mockReporterId}`)
+            .set(headerEnums.reports)
+            .expect(statusCode.INTERNAL_SERVER_ERROR)
+            .end(onEndTestcase(done));
+    });
+
     it('should responds 200 success to /thesys/api/reporters/:id with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
@@ -54,6 +74,16 @@ describe('INTEGRATION TEST: APIs', () => {
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set({})
             .expect(statusCode.UNAUTHORIZED)
+            .end(onEndTestcase(done));
+    });
+
+    it(`should responds 500 to /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
+        nock('http://localhost:3017')
+            .get(`/reports/${mockReporterId}`)
+            .reply(500);
+        request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
+            .set(headerEnums.reports)
+            .expect(statusCode.INTERNAL_SERVER_ERROR)
             .end(onEndTestcase(done));
     });
 

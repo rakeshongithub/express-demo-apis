@@ -31,16 +31,6 @@ function init(app, logger) {
     cors(app);
     // Header Validation
     app.use((req, res, next) => headerValidator(logger, headerEnums.reports, req, res, next));
-
-    app.use('*', (req, res, next) => {
-        logger.info('Application -', resolveLogger({
-            httpMethod: req.method,
-            host: req.headers.host,
-            baseUrl: req.baseUrl,
-            statusCode: res.statusCode
-        }));
-        next();
-    });
 }
 
 /**
