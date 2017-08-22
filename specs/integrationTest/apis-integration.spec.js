@@ -16,24 +16,25 @@ const endDate = 20151231;  // Date format: YYYYMMDD
 // Test suit for APIs
 describe('INTEGRATION TEST: APIs', () => {
 
-    it('should responds 401 unauthorized to /thesys/api/reporters/ if missing requested headers', (done) => {
+    it('should responds 401 for /thesys/api/reporters/ if missing requested headers', (done) => {
         request.get('/thesys/api/reporters/')
             .set({})
             .expect(statusCode.UNAUTHORIZED)
             .end(onEndTestcase(done));
     });
 
-    it('should responds 500 to /thesys/api/reporters/ with valid requested headers', (done) => {
+    it('should responds 500 for /thesys/api/reporters/ with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
             .reply(500);
         request.get('/thesys/api/reporters/')
             .set(headerEnums.reports)
+            .expect({})
             .expect(statusCode.INTERNAL_SERVER_ERROR)
             .end(onEndTestcase(done));
     });
 
-    it('should responds 200 success to /thesys/api/reporters/ with valid requested headers', (done) => {
+    it('should responds 200 for /thesys/api/reporters/ with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
             .reply(200, mockResponseData);
@@ -43,24 +44,25 @@ describe('INTEGRATION TEST: APIs', () => {
             .end(onEndTestcase(done));
     });
 
-    it('should responds 401 unauthorized to /thesys/api/reporters/:id if missing requested headers', (done) => {
+    it('should responds 401 for /thesys/api/reporters/:id if missing requested headers', (done) => {
         request.get('/thesys/api/reporters/' + mockReporterId)
             .set({})
             .expect(statusCode.UNAUTHORIZED)
             .end(onEndTestcase(done));
     });
 
-    it('should responds 500 to /thesys/api/reporters/:id with valid requested headers', (done) => {
+    it('should responds 500 for /thesys/api/reporters/:id with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
             .reply(500);
         request.get(`/thesys/api/reporters/${mockReporterId}`)
             .set(headerEnums.reports)
+            .expect({})
             .expect(statusCode.INTERNAL_SERVER_ERROR)
             .end(onEndTestcase(done));
     });
 
-    it('should responds 200 success to /thesys/api/reporters/:id with valid requested headers', (done) => {
+    it('should responds 200 for /thesys/api/reporters/:id with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
             .reply(200, mockResponseData);
@@ -70,24 +72,25 @@ describe('INTEGRATION TEST: APIs', () => {
             .end(onEndTestcase(done));
     });
 
-    it(`should responds 401 unauthorized to /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} if missing requested headers`, (done) => {
+    it(`should responds 401 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} if missing requested headers`, (done) => {
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set({})
             .expect(statusCode.UNAUTHORIZED)
             .end(onEndTestcase(done));
     });
 
-    it(`should responds 500 to /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
+    it(`should responds 500 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
             .reply(500);
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set(headerEnums.reports)
+            .expect({})
             .expect(statusCode.INTERNAL_SERVER_ERROR)
             .end(onEndTestcase(done));
     });
 
-    it(`should responds 200 success to /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
+    it(`should responds 200 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
             .reply(200, mockResponseData);
@@ -97,7 +100,7 @@ describe('INTEGRATION TEST: APIs', () => {
             .end(onEndTestcase(done));
     });
 
-    it('should responds 404 everything else', (done) => {
+    it('should responds 404 for everything else', (done) => {
         request.get('/')
             .set(headerEnums.reports)
             .expect(statusCode.DATA_NOT_FOUND)

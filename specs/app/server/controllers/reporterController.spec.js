@@ -17,6 +17,7 @@ const endDate = '20151231';  // Date format: YYYYMMDD
 function parseJSON(res) {
     return JSON.parse(res._getData()).body;
 }
+
 describe('REPORTER CONTROLLER', () => {
 
     it('should able to define methods', (done) => {
@@ -39,7 +40,6 @@ describe('REPORTER CONTROLLER', () => {
             url: '/thesys/api/reporters',
             headers: headerEnums.reports
         });
-        reporterController.getAllReports(req, res);
 
         res.on('end', function () {
             var data = parseJSON(res);
@@ -47,6 +47,8 @@ describe('REPORTER CONTROLLER', () => {
             expect(200).toBe(res.statusCode);
             done();
         });
+
+        reporterController.getAllReports(req, res);
     });
 
     it('METHOD => getReportById: should able to get data', (done) => {
@@ -94,13 +96,13 @@ describe('REPORTER CONTROLLER', () => {
             headers: headerEnums.reports
         });
 
-        reporterController.getFilteredReportById(req, res);
-
         res.on('end', function () {
             var data = parseJSON(res);
             expect(data).toEqual(mockResponseData);
             expect(200).toBe(res.statusCode);
             done();
         });
+
+        reporterController.getFilteredReportById(req, res);
     });
 });

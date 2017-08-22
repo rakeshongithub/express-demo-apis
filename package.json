@@ -49,7 +49,8 @@
       "app/server/**/*.js"
     ],
     "exclude": [
-      "spec/**/*.spec.js"
+      "spec/**/*.spec.js",
+      "app/server/services/common/globalErrorHandler.js"
     ],
     "reporter": [
       "lcov",
