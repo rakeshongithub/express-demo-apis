@@ -46,6 +46,7 @@ describe('REPORTER CONTROLLER', () => {
             expect(data).toEqual(mockResponseData);
             expect(200).toBe(res.statusCode);
             done();
+            nock.cleanAll();
         });
 
         reporterController.getAllReports(req, res);
@@ -73,6 +74,7 @@ describe('REPORTER CONTROLLER', () => {
             expect(data).toEqual(mockResponseData);
             expect(200).toBe(res.statusCode);
             done();
+            nock.cleanAll();
         });
 
         reporterController.getReportById(req, res);
@@ -101,6 +103,7 @@ describe('REPORTER CONTROLLER', () => {
             expect(data).toEqual(mockResponseData);
             expect(200).toBe(res.statusCode);
             done();
+            nock.cleanAll();
         });
 
         reporterController.getFilteredReportById(req, res);
