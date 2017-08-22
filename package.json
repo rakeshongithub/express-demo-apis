@@ -9,6 +9,7 @@
     "test:coverage": "NODE_ENV=test nyc npm run test:unit",
     "test:unit": "node specs/_run.js",
     "test:integration": "node specs/integrationTest/_run-integration.js",
+    "test:integration:coverage": "NODE_ENV=test nyc npm run test:integration",
     "test": "npm run test:unit",
     "test:lint": "eslint -c specs/.eslintrc.js 'specs/**/*.spec.js' -f table table --fix"
   },
