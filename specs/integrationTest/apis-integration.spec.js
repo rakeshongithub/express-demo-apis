@@ -94,7 +94,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it(`should responds 200 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
-            .reply(statusCode.INTERNAL_SERVER_ERROR, mockResponseData);
+            .reply(statusCode.SUCCESS_OK, mockResponseData);
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set(headerEnums.reports)
             .expect(statusCode.SUCCESS_OK)

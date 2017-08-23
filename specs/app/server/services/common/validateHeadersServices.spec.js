@@ -1,4 +1,5 @@
-/* global describe, it, expect */
+/* eslint-disable max-len */
+/* global describe, it, expect, jasmine, beforeEach */
 'use strict';
 
 const validateHeadersServices = require('./../../../../../app/server/services/common/validateHeadersServices');
