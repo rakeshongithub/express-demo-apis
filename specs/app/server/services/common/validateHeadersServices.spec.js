@@ -58,7 +58,7 @@ describe('Validate Headers', () => {
 
     it('should return the request with Error 401 status code when execute headers are not available ', () => {
         mockRequiredHeaders = {
-            'X_BRAND': 'x-thesys-brand'
+            'x-thesys-brand': 'x-thesys-brand'
         };
 
         validateHeadersServices(logger, mockRequiredHeaders, mockInvalidReq, mockRes, mockNext);
