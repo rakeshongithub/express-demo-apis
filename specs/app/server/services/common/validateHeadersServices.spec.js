@@ -40,7 +40,7 @@ describe('Validate Headers', () => {
 
     });
 
-    it('middleware function for execute header validation should be called ', () => {
+    it('middleware function should be defined', () => {
         expect(typeof validateHeadersServices).toBe('function');
     });
 
@@ -65,11 +65,5 @@ describe('Validate Headers', () => {
 
         expect(mockInvalidReq.header).toHaveBeenCalledWith('x-thesys-brand');
         expect(mockRes.status).toHaveBeenCalledWith(statusCodes.UNAUTHORIZED);
-    });
-
-    it('should bypass the validation when enum header is empty/null and move forward ', () => {
-        mockRequiredHeaders = null;
-        validateHeadersServices(logger, {}, mockInvalidReq, mockRes, mockNext);
-        expect(true).toBe(true);
     });
 });
