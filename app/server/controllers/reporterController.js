@@ -25,7 +25,7 @@ function getReportById(req, res) {
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getReportById fail to fetch data');
-            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(undefined);
             logger.error('<- ERROR', resolveLogger({
                 statusCode: res.statusCode,
                 errMessage: err.message,
@@ -53,7 +53,7 @@ function getFilteredReportById(req, res) {
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getFilteredReportById fail to fetch data');
-            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(undefined);
             logger.error('<- ERROR', resolveLogger({
                 statusCode: res.statusCode,
                 errMessage: err.message,
@@ -77,7 +77,7 @@ function getAllReports(req, res) {
         })
         .catch((err) => {
             logger.error('<- OOPS :: ReporterService.getAllReports fail to fetch data');
-            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(null);
+            res.status(statusCodes.INTERNAL_SERVER_ERROR).send(undefined);
             logger.error('<- ERROR', resolveLogger({
                 statusCode: res.statusCode,
                 errMessage: err.message,

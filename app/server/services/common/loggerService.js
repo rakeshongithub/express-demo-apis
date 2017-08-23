@@ -4,7 +4,7 @@
  * @author RKU143 <rkumar148@sapient.com>
  */
 const config = require('./../../../config');
-let logger, logLevel, environment;
+let logLevel, environment;
 
 /**
  * @description Export logger services

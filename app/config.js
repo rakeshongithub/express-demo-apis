@@ -24,7 +24,6 @@ module.exports = {
  * @params [app]
  */
 function init(app, logger) {
-    const resolveLogger = require('./server/services/utils/resolveLogger');
     // Body parser for JSON
     app.use(bodyParser.json());
     app.use(compression());
