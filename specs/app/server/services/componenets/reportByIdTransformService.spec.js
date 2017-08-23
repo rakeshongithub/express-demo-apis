@@ -1,8 +1,8 @@
 /* global describe, it, expect */
 'use strict';
-const reporterController = require('./../../../../app/server/services/components/reportByIdTransformService');
-const mockUserReport = require('./../../../mocks/reports').body;
-const mockFilteredUserReport = require('./../../../mocks/filtered-report').body;
+const reporterController = require('./../../../../../app/server/services/components/reportByIdTransformService');
+const mockUserReport = require('./../../../../mocks/reports').body;
+const mockFilteredUserReport = require('./../../../../mocks/filtered-report').body;
 
 describe('TRANSFORM SERVICE: Report by id', () => {
     const fromDate = '20151212'; // Date format: YYYYMMDD

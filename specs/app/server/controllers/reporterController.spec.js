@@ -1,11 +1,12 @@
 /* global describe, it, expect */
 'use strict';
+const nock = require('nock');
+const httpMocks = require('node-mocks-http');
 const eventEmitter = require('events').EventEmitter;
 const reporterController = require('./../../../../app/server/controllers/reporterController');
 const headerEnums = require('./../../../../app/server/enums/headersEnum');
 const mockResponseData = require('./../../../mocks/reports').body;
-const httpMocks = require('node-mocks-http');
-const nock = require('nock');
+const statusCodes = require('./../../../../app/server/enums/statusCodes');
 
 function buildResponse() {
     return httpMocks.createResponse({eventEmitter});
@@ -31,7 +32,7 @@ describe('REPORTER CONTROLLER', () => {
     it('METHOD => getAllReports: should respond 200 and able to fetch data', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
-            .reply(200, {
+            .reply(statusCodes.SUCCESS_OK, {
                 body: mockResponseData
             });
 
@@ -45,7 +46,7 @@ describe('REPORTER CONTROLLER', () => {
         res.on('end', function () {
             var data = parseJSON(res);
             expect(data).toEqual(mockResponseData);
-            expect(200).toBe(res.statusCode);
+            expect(statusCodes.SUCCESS_OK).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });
@@ -55,7 +56,7 @@ describe('REPORTER CONTROLLER', () => {
 
     it('METHOD => getAllReports: should response 500 internal server error', (done) => {
         nock('http://localhost:3017')
-            .get('/reports').reply(500);
+            .get('/reports').reply(statusCodes.INTERNAL_SERVER_ERROR);
 
         var res = buildResponse();
         var req = httpMocks.createRequest({
@@ -64,7 +65,7 @@ describe('REPORTER CONTROLLER', () => {
             headers: headerEnums.reports
         });
         res.on('end', function () {
-            expect(500).toBe(res.statusCode);
+            expect(statusCodes.INTERNAL_SERVER_ERROR).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });
@@ -75,7 +76,7 @@ describe('REPORTER CONTROLLER', () => {
     it('METHOD => getReportById: should respond 200 and able to fetch data', (done) => {
         nock('http://localhost:3017')
             .get('/reports/' + mockReporterId)
-            .reply(200, {
+            .reply(statusCodes.SUCCESS_OK, {
                 body: mockResponseData
             });
 
@@ -92,7 +93,7 @@ describe('REPORTER CONTROLLER', () => {
         res.on('end', function () {
             var data = parseJSON(res);
             expect(data).toEqual(mockResponseData);
-            expect(200).toBe(res.statusCode);
+            expect(statusCodes.SUCCESS_OK).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });
@@ -103,7 +104,7 @@ describe('REPORTER CONTROLLER', () => {
     it('METHOD => getReportById: should respond 500 internal server error', (done) => {
         nock('http://localhost:3017')
             .get('/reports/' + mockReporterId)
-            .reply(500);
+            .reply(statusCodes.INTERNAL_SERVER_ERROR);
 
         var res = buildResponse();
         var req = httpMocks.createRequest({
@@ -116,7 +117,7 @@ describe('REPORTER CONTROLLER', () => {
         });
 
         res.on('end', function () {
-            expect(500).toBe(res.statusCode);
+            expect(statusCodes.INTERNAL_SERVER_ERROR).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });
@@ -127,7 +128,7 @@ describe('REPORTER CONTROLLER', () => {
     it('METHOD => getFilteredReportById: should respond 200 and able to fetch data', (done) => {
         nock('http://localhost:3017')
             .get('/reports/' + mockReporterId)
-            .reply(200, {
+            .reply(statusCodes.SUCCESS_OK, {
                 body: mockResponseData
             });
 
@@ -145,7 +146,7 @@ describe('REPORTER CONTROLLER', () => {
         res.on('end', function () {
             var data = parseJSON(res);
             expect(data).toEqual(mockResponseData);
-            expect(200).toBe(res.statusCode);
+            expect(statusCodes.SUCCESS_OK).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });
@@ -156,7 +157,7 @@ describe('REPORTER CONTROLLER', () => {
     it('METHOD => getFilteredReportById: should respond 500 internal server error', (done) => {
         nock('http://localhost:3017')
             .get('/reports/' + mockReporterId)
-            .reply(500);
+            .reply(statusCodes.INTERNAL_SERVER_ERROR);
 
         var res = buildResponse();
         var req = httpMocks.createRequest({
@@ -170,7 +171,7 @@ describe('REPORTER CONTROLLER', () => {
         });
 
         res.on('end', function () {
-            expect(500).toBe(res.statusCode);
+            expect(statusCodes.INTERNAL_SERVER_ERROR).toBe(res.statusCode);
             done();
             nock.cleanAll();
         });

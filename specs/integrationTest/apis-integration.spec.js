@@ -27,7 +27,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it('should responds 500 for /thesys/api/reporters/ with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
-            .reply(500);
+            .reply(statusCode.INTERNAL_SERVER_ERROR);
         request.get('/thesys/api/reporters/')
             .set(headerEnums.reports)
             .expect({})
@@ -38,7 +38,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it('should responds 200 for /thesys/api/reporters/ with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get('/reports')
-            .reply(200, mockResponseData);
+            .reply(statusCode.SUCCESS_OK, mockResponseData);
         request.get('/thesys/api/reporters/')
             .set(headerEnums.reports)
             .expect(statusCode.SUCCESS_OK)
@@ -55,7 +55,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it('should responds 500 for /thesys/api/reporters/:id with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
-            .reply(500);
+            .reply(statusCode.INTERNAL_SERVER_ERROR);
         request.get(`/thesys/api/reporters/${mockReporterId}`)
             .set(headerEnums.reports)
             .expect({})
@@ -66,7 +66,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it('should responds 200 for /thesys/api/reporters/:id with valid requested headers', (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
-            .reply(200, mockResponseData);
+            .reply(statusCode.SUCCESS_OK, mockResponseData);
         request.get(`/thesys/api/reporters/${mockReporterId}`)
             .set(headerEnums.reports)
             .expect(statusCode.SUCCESS_OK)
@@ -83,7 +83,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it(`should responds 500 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
-            .reply(500);
+            .reply(statusCode.INTERNAL_SERVER_ERROR);
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set(headerEnums.reports)
             .expect({})
@@ -94,7 +94,7 @@ describe('INTEGRATION TEST: APIs', () => {
     it(`should responds 200 for /thesys/api/reporters/:id/filter?fromDate=${fromDate}&endDate=${endDate} with valid requested headers`, (done) => {
         nock('http://localhost:3017')
             .get(`/reports/${mockReporterId}`)
-            .reply(200, mockResponseData);
+            .reply(statusCode.INTERNAL_SERVER_ERROR, mockResponseData);
         request.get(`/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`)
             .set(headerEnums.reports)
             .expect(statusCode.SUCCESS_OK)
