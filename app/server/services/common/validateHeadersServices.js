@@ -15,7 +15,7 @@ const headerValidator = (logger, reqHeaders, req, res, next) => {
 
     logger.info(`==> START: Header Validation for request: ${req.url}`);
     logger.info('Middleware is triggered on for validating required headers');
-    const finalHeaders = reqHeaders || {};
+    const finalHeaders = reqHeaders;
     const inValidHeaders = _.filter(Object.keys(finalHeaders), header => !validate(req.header(finalHeaders[header])));
     if (inValidHeaders.length) {
         logger.error(`=> FAILED: Header Validation for Request: ${req.url}`);

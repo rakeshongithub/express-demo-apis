@@ -1,9 +1,9 @@
 module.exports = {
     body: [
         {
-            "id": "460d49d195b14bc48e3bfe013fdcbf2c",
-            "type": "AMD",
-            "reporter": "Exch5",
+            "id": "e5de740c0833464f8726f59b7709f6f1",
+            "type": "BZD",
+            "reporter": "Exch2",
             "ID": "1234567",
             "status": "Active",
             "memberAliases": [
@@ -14,54 +14,54 @@ module.exports = {
             ],
             "userReports": [
                 {
-                    "date": "2010-07-07T14:57:51.251Z",
+                    "date": "2010-11-15T03:49:00.875Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Consequatur ut amet et. Placeat numquam eum doloribus eius et sint laudantium consectetur vel. Accusamus dolores quam. Repellendus non vel. Vero natus quia culpa eos labore illo voluptas aut."
+                    "reports": "Voluptatem voluptatem aut omnis consequatur autem deserunt eius sapiente. Explicabo dolor qui non voluptas. Ut nostrum totam facilis. Repudiandae laborum cumque molestiae accusantium. Labore rem neque consequatur ad minus debitis est dolorum facere."
                 },
                 {
-                    "date": "2011-01-18T19:23:14.716Z",
+                    "date": "2011-05-31T01:48:55.115Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Distinctio qui qui beatae qui ut perspiciatis amet. Error sint explicabo doloremque mollitia exercitationem. Eveniet et et perferendis ab accusamus fuga quam."
+                    "reports": "Qui qui aliquid necessitatibus consequatur eaque. Corporis non accusamus iure hic quisquam doloremque nisi cumque. Corrupti ipsa deleniti ipsa eligendi sit unde autem ad minus. Corrupti adipisci earum. Quia dolorem nemo quia vitae a. Illo non in quos et odio aut."
                 },
                 {
-                    "date": "2012-02-04T10:53:30.977Z",
+                    "date": "2012-08-19T16:03:45.894Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Eos eligendi commodi voluptatem iusto temporibus. Quia incidunt dolor porro magni et aut nam. Est placeat officia quia iure quas architecto asperiores libero accusamus. Sed vel cum minus cum distinctio illo fugit vel. Totam quos saepe a doloremque aut."
+                    "reports": "Error inventore autem. Itaque neque omnis et voluptatem hic. Nihil mollitia omnis. Ut quo rerum."
                 },
                 {
-                    "date": "2013-12-19T15:33:00.879Z",
+                    "date": "2013-05-16T01:13:10.161Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Maxime est ratione quo et. Ipsa recusandae corporis a dicta molestias ipsam beatae aperiam unde. Et itaque qui."
+                    "reports": "Ut dolor quas et earum sit quo qui. Voluptatem provident maxime laudantium enim labore ipsum. Enim sapiente voluptatem. Similique aut sed quo excepturi nihil quae nihil amet soluta. Quaerat nihil occaecati occaecati laboriosam laudantium perferendis in eveniet. Id id porro reiciendis qui illo consequatur dolores dolores."
                 },
                 {
-                    "date": "2014-10-29T04:40:45.294Z",
+                    "date": "2014-11-03T10:22:56.529Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Sed sit id sapiente voluptatem quia. Ex qui impedit ab. Blanditiis hic vero voluptatem tempore. Unde dolores ullam molestiae vel magnam tempore commodi eum temporibus."
+                    "reports": "Dolores quo dolorem non incidunt natus illo deleniti dolores nobis. Aut totam aut est voluptatibus doloribus provident. Sequi animi provident. Accusantium quos quaerat nihil sit facilis nihil delectus dolore minus."
                 },
                 {
-                    "date": "2015-12-07T06:48:14.203Z",
+                    "date": "2015-05-07T15:54:36.070Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Ipsam exercitationem id saepe neque ratione. Dolores deleniti quod tempora reprehenderit. Aperiam aut architecto sed repellendus ullam omnis assumenda eveniet nulla. Vel soluta saepe voluptas dolor ipsum quis optio. Nemo ea autem."
+                    "reports": "Laudantium adipisci tenetur voluptatem error. Iste neque non. Autem nobis sed rerum ratione voluptatibus aut odit sit ea. Provident dicta quis est corrupti harum ut quia vitae. Debitis iure fugit doloribus voluptatibus sed provident sit. Odit asperiores quidem officia."
                 },
                 {
-                    "date": "2016-06-10T21:10:37.785Z",
+                    "date": "2016-06-30T22:04:26.192Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Unde voluptatem autem repellendus ut eveniet. Eos nemo recusandae ut tenetur. Dolorem doloremque vero tenetur voluptas nisi qui aut vel. Consectetur autem rerum nam. Aut repellat voluptate voluptatibus quos."
+                    "reports": "Veritatis fugit porro consequatur sequi voluptates maiores. Laboriosam saepe nobis. Corrupti eligendi error aut aut sunt in. Error officiis possimus sunt nobis. Debitis corporis sint quo aperiam atque. Itaque facere quam quia qui."
                 },
                 {
-                    "date": "2017-05-09T08:56:26.900Z",
+                    "date": "2017-06-27T16:35:17.401Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Accusantium consequatur velit vero maxime deleniti exercitationem neque hic. Minus rerum excepturi sit ea ut consectetur cupiditate. Repellat et vel."
+                    "reports": "Explicabo non voluptatem reiciendis et. Et voluptas dolorum dolores velit accusamus. Commodi tempora est velit perferendis quo consequatur quia voluptatem."
                 },
                 {
-                    "date": "2018-11-04T08:39:13.429Z",
+                    "date": "2018-10-12T02:18:45.331Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Impedit et ipsa vel laborum suscipit. Et quo aut nemo ipsa repellendus tempore. Nisi expedita cumque quia repudiandae dolorem nemo aperiam. Natus qui architecto facilis id eum. Qui voluptatum maxime necessitatibus illo magni et eum iste voluptatem."
+                    "reports": "Exercitationem sapiente sit repellendus nesciunt. Sint hic illum ab iusto. Temporibus eum labore et consequatur architecto."
                 },
                 {
-                    "date": "2019-04-19T13:55:31.591Z",
+                    "date": "2019-06-28T14:18:10.285Z",
                     "companyName": "The Absolute Best Company Description",
-                    "reports": "Qui perferendis quibusdam nihil et rem maxime consequatur esse porro. Possimus animi nemo odio sapiente explicabo et voluptas. Expedita et consequatur. Quia sit magni et beatae tenetur possimus. Assumenda maxime ea minima voluptate aut delectus repellat."
+                    "reports": "Quos consequatur error aut et repudiandae ipsa expedita modi. Recusandae maiores corporis et. Dolor et commodi distinctio sint culpa quae."
                 }
             ]
         },

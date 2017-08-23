@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* global describe, it */
+'use strict';
 const app = require('./../../app/app');
 const nock = require('nock');
 const supertest = require('supertest');

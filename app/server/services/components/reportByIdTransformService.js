@@ -13,7 +13,7 @@ const moment = require('moment');
 module.exports.transformData = (options) => {
     var filterReports = _.filter(options.data.userReports, (item) => {
         var itemDate = moment(item.date);
-        if (isBetweenRange(itemDate, options.fromDate, options.endDate)) {
+        if (isBetweenRange(itemDate, moment(options.fromDate), moment(options.endDate))) {
             return item;
         }
     });
@@ -27,5 +27,5 @@ module.exports.transformData = (options) => {
  * @modules [itemDate, fromDate, endDate]
  */
 function isBetweenRange(itemDate, fromDate, endDate) {
-    return (itemDate >= moment(fromDate)) && (itemDate <= moment(endDate));
+    return (itemDate >= fromDate) && (itemDate <= endDate);
 }

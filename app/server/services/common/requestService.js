@@ -45,7 +45,6 @@ function requestForJSON(url, params) {
  * @params [url, data]
  */
 function parseURL(url, data) {
-    data = data || {};
     url = url.replace(/{(mockUDMHost|mockCMSHost|cmsHost|udmHost)}/g, '');
     return confs.udmHost + urlTemplate.parse(url).expand(data);
 }

@@ -1,4 +1,5 @@
 /* global describe, it, expect */
+'use strict';
 const eventEmitter = require('events').EventEmitter;
 const reporterController = require('./../../../../app/server/controllers/reporterController');
 const headerEnums = require('./../../../../app/server/enums/headersEnum');
@@ -11,8 +12,8 @@ function buildResponse() {
 }
 
 const mockReporterId = mockResponseData[0].id;
-const fromDate = '20100320'; // Date format: YYYYMMDD
-const endDate = '20151231';  // Date format: YYYYMMDD
+const fromDate = '20151212'; // Date format: YYYYMMDD
+const endDate = '20181212';  // Date format: YYYYMMDD
 
 function parseJSON(res) {
     return JSON.parse(res._getData()).body;
