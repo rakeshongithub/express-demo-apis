@@ -7,6 +7,9 @@ var express = require('express');
 var router = express.Router({
     caseSensitive: true
 });
+var statusCodes = require('./server/enums/statusCodes');
+var logger = require('./server/services/common/loggerService').get('APP');
+var resolveLogger = require('./server/services/utils/resolveLogger');
 
 // Controllers services
 var reporterController = require('./server/controllers/reporterController');
@@ -36,4 +39,19 @@ module.exports.init = (app) => {
      * @prefix '/api'
      * */
     app.use('/api', router);
+
+    // handle 404 response
+    app.use((req, res) => {
+        logger.error('=> Invalid Route', resolveLogger({
+            url: req.url,
+            statusCode: statusCodes.DATA_NOT_FOUND,
+            error: 'Route Not Found'
+        }));
+        res.status(statusCodes.DATA_NOT_FOUND);
+        res.send({
+            url: req.url,
+            statusCode: statusCodes.DATA_NOT_FOUND,
+            error: `Requested <${req.url}> not found.`
+        });
+    });
 };
