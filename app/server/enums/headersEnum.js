@@ -6,8 +6,7 @@
  */
 module.exports = {
     reports: {
-        'x-thesys-brand': 'x-thesys-brand',
-        'x-thesys-correlation-id': 'x-thesys-correlation-id'
+        'x-brand': 'x-brand',
+        'x-correlation-id': 'x-correlation-id'
     }
 };
-

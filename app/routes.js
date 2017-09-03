@@ -33,7 +33,7 @@ module.exports.init = (app) => {
     });
 
     /** initiate app route middleware
-     * @prefix '/thesys/api'
+     * @prefix '/api'
      * */
-    app.use('/thesys/api', router);
+    app.use('/api', router);
 };

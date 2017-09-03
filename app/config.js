@@ -58,7 +58,7 @@ function getWinstonLogger(level, label) {
 function cors(app) {
     app.all('*', function (req, res, next) {
         res.set('Access-Control-Allow-Methods', 'GET,POST');
-        res.header('Access-Control-Allow-Headers', 'X-THESYS-TOKEN, X-THESYS-API, X-Requested-With, Content-Type, Authorization');
+        res.header('Access-Control-Allow-Headers', 'X-DEMO-TOKEN, X-DEMO-API, X-Requested-With, Content-Type, Authorization');
         if ('OPTIONS' === req.method) {
             return res.send(200);
         }

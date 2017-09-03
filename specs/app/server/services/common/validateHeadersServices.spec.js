@@ -46,24 +46,24 @@ describe('Validate Headers', () => {
 
     it('should move forward [call next()] when headers are available. ', () => {
         mockRequiredHeaders = {
-            'x-thesys-brand': 'x-thesys-brand'
+            'x-brand': 'x-brand'
         };
 
         validateHeadersServices(logger, mockRequiredHeaders, mockReq, mockRes, mockNext);
 
         expect(mockReq.header).toHaveBeenCalled();
-        expect(mockReq.header).toHaveBeenCalledWith('x-thesys-brand');
+        expect(mockReq.header).toHaveBeenCalledWith('x-brand');
         expect(mockNext).toHaveBeenCalled();
     });
 
     it('should return the request with Error 401 status code when execute headers are not available ', () => {
         mockRequiredHeaders = {
-            'x-thesys-brand': 'x-thesys-brand'
+            'x-brand': 'x-brand'
         };
 
         validateHeadersServices(logger, mockRequiredHeaders, mockInvalidReq, mockRes, mockNext);
 
-        expect(mockInvalidReq.header).toHaveBeenCalledWith('x-thesys-brand');
+        expect(mockInvalidReq.header).toHaveBeenCalledWith('x-brand');
         expect(mockRes.status).toHaveBeenCalledWith(statusCodes.UNAUTHORIZED);
     });
 });

@@ -1,4 +1,4 @@
-# Thesys Cat API Using Express JS
+# DEMO Express API
 
 ## Available Scripts
 In the project directory, you can run:
@@ -22,17 +22,17 @@ Install nodemon globally. `npm install nodemon -g`
 
 
 ## APIs Available
-   1. GET - [/thesys/api/reporters](http://localhost:3000/thesys/api/reporters)
-   2. GET - [/thesys/api/reporters/:id](http://localhost:3000/thesys/api/reporters/3bf4b8eae5674a4e853ced241e832016)
-   2. GET - [/thesys/api/reporters/:id/filter?fromDate=20150122&endDate=20150415](http://localhost:3000/thesys/api/reporters/3bf4b8eae5674a4e853ced241e832016/filter?fromDate=20150122&endDate=20150415)
+   1. GET - [/api/reporters](http://localhost:3000/api/reporters)
+   2. GET - [/api/reporters/:id](http://localhost:3000/api/reporters/3bf4b8eae5674a4e853ced241e832016)
+   2. GET - [/api/reporters/:id/filter?fromDate=20150122&endDate=20150415](http://localhost:3000/api/reporters/3bf4b8eae5674a4e853ced241e832016/filter?fromDate=20150122&endDate=20150415)
 
 
 ## Request Header to access APIs
 
     Content-Type: application/json
-    x-thesys-brand: thesys-cat
-    x-thesys-correlation-id: 8eae5674a4e853ced2413bf4b8eae5ew
+    x-brand: 'demo-api'
+    x-correlation-id: 8eae5674a4e853ced2413bf4b8eae5ew
 
 ## License
 
-UNLICENSED © [SAPIENT]
+UNLICENSED © [RAKESH KUMAR]

@@ -39,7 +39,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: '/thesys/api/reporters',
+            url: '/api/reporters',
             headers: headerEnums.reports
         });
 
@@ -61,7 +61,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: '/thesys/api/reporters',
+            url: '/api/reporters',
             headers: headerEnums.reports
         });
         res.on('end', function () {
@@ -83,7 +83,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: '/thesys/api/reporters',
+            url: '/api/reporters',
             headers: headerEnums.reports,
             params: {
                 reporterId: mockReporterId
@@ -109,7 +109,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: '/thesys/api/reporters',
+            url: '/api/reporters',
             headers: headerEnums.reports,
             params: {
                 reporterId: mockReporterId
@@ -135,7 +135,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: `/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`,
+            url: `/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`,
             params: {
                 reporterId: mockReporterId
             },
@@ -162,7 +162,7 @@ describe('REPORTER CONTROLLER', () => {
         var res = buildResponse();
         var req = httpMocks.createRequest({
             method: 'GET',
-            url: `/thesys/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`,
+            url: `/api/reporters/${mockReporterId}/filter?fromDate=${fromDate}&endDate=${endDate}`,
             params: {
                 reporterId: mockReporterId
             },
